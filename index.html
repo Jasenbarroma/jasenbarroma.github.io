@@ -6,6 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>SEO - Web Portfolio</title>
   <link rel="icon" type="image/png" href="https://jasenbarroma.github.io/img/seo_icon.png">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha384-k6RqeWeci5ZR/Lv4MR0sA0FfDOM8d7x1z5l5e5c5e5e5e5e5e5e5e5e5e5e5e" crossorigin="anonymous" />
   <style>
     body {
       font-family: 'Poppins', sans-serif;
@@ -230,16 +232,6 @@
         </p>
       </section>
 
-      <section class="section" tabindex="-1">
-        <h2>Website Projects</h2>
-        <ul id="projectList"></ul>
-        <div class="pagination">
-          <button onclick="prevPage()">Previous</button>
-          <span id="pageIndicator">Page 1</span>
-          <button onclick="nextPage()">Next</button>
-        </div>
-      </section>
-
       <section class="section">
         <ul>
           <h2>Technical Skills</h2>
@@ -308,6 +300,17 @@
         <p>Email: mrjasenbarroma@gmail.com</p>
         <p>Phone: 09493900555 / 0288230736</p>
       </section>
+
+      <section class="section" tabindex="-1">
+        <h2>Website Projects</h2>
+        <ul id="projectList"></ul>
+        <div class="pagination">
+          <button onclick="prevPage()">Previous</button>
+          <span id="pageIndicator">Page 1</span>
+          <button onclick="nextPage()">Next</button>
+        </div>
+      </section>
+
     </div>
 
     <div id="imgModal" class="modal" onclick="closeModal()">
@@ -572,7 +575,7 @@
         });
       }
 
-      const projectsPerPage = 5;
+      const projectsPerPage = 3;
       let currentPage = 1;
 
       // Helper function to check if an image exists
@@ -601,7 +604,7 @@
 
           if (imgSrc) {
             imagesHTML += `
-        <img src="${imgSrc}" alt="${project.name} ${project.description} ${i}" class="project-img slide fade" onclick="openModal(this)">
+        <img src="${imgSrc}" alt="${project.name} ${project.description} ${i}" class="project-img slide fade" loading="lazy" onclick="openModal(this)">
       `;
           }
         }
@@ -700,6 +703,8 @@
 
       window.onload = displayProjects;
     </script>
+  </div>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 </body>
 
