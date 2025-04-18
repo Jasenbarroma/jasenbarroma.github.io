@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SEO - Web Portfolio</title>
+  <link rel="icon" type="image/png" href="img/seo_icon.png">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f9f9f9;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    header {
+      background: linear-gradient(135deg, #6e8efb, #77c4e3);
+      color: #fff;
+      padding: 30px;
+      text-align: center;
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: auto;
+      overflow: hidden;
+      padding: 20px 0;
+    }
+
+    .section {
+      background: #fff;
+      padding: 30px;
+      margin: 20px 0;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease-in-out;
+    }
+
+    .section:hover {
+      transform: scale(1.02);
+    }
+
+    .project-img {
+      width: 100%;
+      max-width: 900px;
+      display: block;
+      margin: 20px auto;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease-in-out;
+    }
+
+    .project-img:hover {
+      transform: scale(1.05);
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.8);
+      justify-content: center;
+      align-items: center;
+    }
+
+    .modal-content {
+      max-width: 90%;
+      max-height: 90%;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .close {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      font-size: 40px;
+      font-weight: bold;
+      color: white;
+      cursor: pointer;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: #333;
+      color: white;
+      margin-top: 20px;
+      font-size: 0.9rem;
+    }
+
+    a {
+      color: #6e8efb;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .slideshow-container {
+      width: 100%;
+      /* Set your desired width */
+      height: 500px;
+      /* Set your desired height */
+      overflow: hidden;
+      position: relative;
+    }
+
+    .slideshow-container .slide {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      /* Or use `contain` if you don't want to crop */
+      display: none;
+      /* Hidden by default */
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+
+    .slideshow-container .slide:first-child {
+      display: block;
+      /* Show the first slide initially */
+    }
+
+    .slideshow-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      /* use `contain` if you want to show full image with possible gaps */
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+
+    .slide {
+      display: none;
+      width: 100%;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .fade {
+      animation: fadeEffect 1.5s ease-in-out;
+    }
+
+    @keyframes fadeEffect {
+      from {
+        opacity: 0.4;
+      }
+
+      to {
+        opacity: 1;
+      }
+    }
+
+    .zoom-link {
+      display: inline-block;
+      transition: transform 0.3s ease, color 0.3s ease;
+    }
+
+    .zoom-link:hover {
+      transform: scale(1.1);
+      color: #ffeb3b;
+    }
+
+    .pagination {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .pagination button {
+      padding: 8px 16px;
+      margin: 0 5px;
+      font-size: 1rem;
+      border: none;
+      background: #6e8efb;
+      color: white;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .pagination button:hover {
+      background: #4f6ddc;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>Jasen Robert Barroma</h1>
+    <p>SEO Developer</p>
+  </header>
+
+  <div class="container">
+
+    <div class="container">
+      <section class="section">
+        <h2>About Me</h2>
+        <p>Experienced Operations Leader with 5 years in the IT
+          industry, specializing in AWS application support and
+          telephony, with a strong focus on enhancing system
+          efficiency and reducing downtime by proactively addressing telco infrastructure issues. Skilled in Cloud
+          Infrastructure Management and backed by over 3 years of experience in the BPO industry. Excellent reputation
+          for
+          resolving problems and improving customer satisfaction.
+        <p>In addition to core operations expertise, worked as a Freelance Technical SEO Executive, helping businesses
+          improve their online visibility by optimizing website
+          architecture, page speed, and technical on-page elements. This role involved in-depth website audits and
+          implementation of SEO best practices to boost search
+          engine rankings. Organized and dependable candidate successful at managing multiple priorities with a positive
+          attitude.
+        <p>Willing to take on added responsibilities to meet team
+          goals. Dedicated Operations Supervisor/Infrastructure Engineer with a history of meeting company objectives
+          through consistent and structured practices. Skilled in working under pressure and adapting to new situations
+          and
+          challenges to enhance the organizational brand.
+        </p>
+      </section>
+
+      <section class="section">
+        <h2>Website Projects</h2>
+        <ul id="projectList"></ul>
+        <div class="pagination">
+          <button onclick="prevPage()">Previous</button>
+          <span id="pageIndicator">Page 1</span>
+          <button onclick="nextPage()">Next</button>
+        </div>
+      </section>
+
+      <section class="section">
+        <ul>
+          <h2>Technical Skills</h2>
+          <li>Team Management</li>
+          <li>Problem Solving</li>
+          <li>Windows Server</li>
+          <li>PowerShell</li>
+          <li>Hyper-V</li>
+          <li>Active Directory</li>
+          <li>Group Policy Object</li>
+          <li>DHCP</li>
+          <li>DNS</li>
+          <li>Virtualization</li>
+          <li>Knowledgeable in CCNA</li>
+          <li>Willing to work in minimal supervision and determined</li>
+          <li>Ability to accept & incorporate constructive feedback to improve performance</li>
+          <li>Basic Knowledge in MS Office</li>
+          <li>Organized</li>
+          <li>Basic Knowledge in LAN PC Networking</li>
+          <li>Knowledge in computer hardware and software installation and troubleshooting</li>
+          <li>SEO “Search Engine Optimization”</li>
+          <li>High multi-tasking skills</li>
+          <li>Works under pressure</li>
+          <li>Team-player</li>
+          <li>Cooperative</li>
+          <li>FSRM</li>
+          <li>Technical Support</li>
+          <li>Amazon Web Services</li>
+          <li>Zoom Admin / Support</li>
+          <li>Adobe Premiere Pro</li>
+          <li>Video Editing</li>
+          <li>SolarWinds</li>
+          <li>ConnectWise</li>
+        </ul>
+        <br>
+        <h2>SEO Skills</h2>
+        <ul>
+          <li>Conducts in-depth SEO audits, addressing issues like low text-to-HTML ratio, broken internal/external
+            links, and orphaned pages in sitemaps (e.g., over 5,000+ orphaned pages identified and resolved)</li>
+          <li>Performs Core Web Vitals and Page Speed optimization through tools like Google PageSpeed Insights,
+            NitroPack, and by fixing unminified JavaScript/CSS files</li>
+          <li>Manages and schedules GMB posts via Local Viking for multiple office locations, improving local SEO
+            visibility</li>
+          <li>Executes weekly link disavow processes, redirect projects handling 10+ redirects/day, and updates internal
+            link structures—e.g., addressing pages with only one incoming link</li>
+          <li>Proactively looks for relevant anchor words across content to create strategic internal links and improve
+            crawlability, UX, and site structure</li>
+          <li>Improves site architecture by reducing click depth—resolving issues like 187 pages needing 3+ clicks to
+            access</li>
+          <li>Fixes content issues including multiple H1 tags, missing ALT text, and optimizes on-page SEO</li>
+          <li>Coordinates technical syncs like DEV to LIVE category alignment across platforms</li>
+          <li>Uses Shopify, WordPress, and related plugins (e.g., WP Rocket, NitroPack) to boost UX and SEO performance
+          </li>
+          <li>Creates detailed End of Day Reports, tracking site health metrics (e.g., LCP/FCP for mobile & desktop),
+            broken link status, task completions, and progress on redirect and internal linking projects. Tools include
+            Google Analytics, ClickUp, and shared Google Sheets</li>
+          <li>Monitors and manages SEO issues through Notion, email, and SEO tools including ScreamingFrog, Ahrefs, and
+            Google Search Console</li>
+          <li>Collaborates with developers and content teams during weekly tech meetings to resolve 4XX errors,
+            implement redirects, and enhance structured <data value=""></data></li>
+        </ul>
+      </section>
+
+      <section class="section">
+        <h2>Contact</h2>
+        <p>Email: mrjasenbarroma@gmail.com</p>
+        <p>Phone: 09493900555 / 0288230736</p>
+      </section>
+    </div>
+
+    <div id="imgModal" class="modal" onclick="closeModal()">
+      <span class="close">&times;</span>
+      <img class="modal-content" id="modalImg" />
+    </div>
+
+    <footer>
+      <p>&copy; 2025 Jasen Robert Barroma. All Rights Reserved.</p>
+    </footer>
+    <script>
+      const sampleNames = [
+        "herrmanandherrman.com",
+        "freshcar.co.uk",
+        "homedetail.co.uk",
+        "g2ref.co.uk",
+        "google.com",
+        "google.com",
+        "google.com",
+        "ablegardeners.com",
+        "aboutliving.co.uk",
+        "affordablegolf.co.uk",
+        "aj-renewables.co.uk",
+        "allfloorsglasgow.co.uk",
+        "aramaslawexpat.com",
+        "autopsi.co.uk",
+        "beeksgroup.com",
+        "bespokehomefinance.co.uk",
+        "brightbustours.com",
+        "caffia.com",
+        "carmoney.co.uk",
+        "caterbox.co.uk",
+        "cbrsolar.co.uk",
+        "certum.co.uk",
+        "classicinteriors.co.uk",
+        "clyde-arc.com",
+        "discountpetsupplies.co.uk",
+        "diversediagnostics.co.uk",
+        "drbonaros.comgallery",
+        "drdarrenmckeown.com",
+        "estateagencymoray.co.uk",
+        "factoryweights.co.uk",
+        "federalmanagement.co.uk",
+        "firstvehicleleasing.co.uk",
+        "fishpatagonia.comthe-reviews",
+        "freshcar.co.uk",
+        "frontline-collections.com",
+        "g2ref.co.uk",
+        "gardenersdream.co.uk",
+        "gates-scotland.co.uk",
+        "gatesandautomationdirect.co.uk",
+        "gdotv.com",
+        "glenscotia.com",
+        "guitarguitar.co.uk",
+        "hanselstone.co.uk",
+        "hanselstone.com",
+        "harpermacleod.co.uk",
+        "hendry-installations.co.uk",
+        "holon.co.uk",
+        "homedetail.co.uk",
+        "homerewire.com",
+        "hrservicesscotland.co.uk",
+        "hyperiontiles.co.uk",
+        "jrsindustrial.co.uk",
+        "legionofvapers.com",
+        "linksforyou.com",
+        "loanza.co.uk",
+        "loanza.us",
+        "lochlomondwhiskies.com",
+        "logcabinkits.co.uk",
+        "logos4clothes.com",
+        "luxurylightingboutique.com",
+        "mannik.co.uk",
+        "google.com",
+        "google.com",
+        "google.com",
+        "google.com",
+        "google.com",
+        "google.com",
+        "google.com",
+        "google.com",
+        "google.com",
+        "google.com",
+        "google.com",
+        "google.com",
+        "google.com",
+        "google.com",
+        "google.com",
+        "google.com",
+        "google.com",
+        "google.com",
+        "google.com",
+        "mitchellmcdermott.com",
+        "myhotelbreak.com",
+        "myvoyagescotland.com",
+        "nadcellclinic.com",
+        "plastechgroup.com",
+        "plastererglasgow.co.uk",
+        "precision-um.co.uk",
+        "precision-um.ie",
+        "premiercarriage.co.uk",
+        "pwsglasgow.com",
+        "quotegoat.com",
+        "replacewindowslimited.co.uk",
+        "requiment.com",
+        "rtaesthetics.co.uk",
+        "rubberroofingdirect.co.uk",
+        "runitcool.co.uk",
+        "seoglasgow.com",
+        "soccerstarsacademy.co.uk",
+        "solutionsdriven.com",
+        "storageboxshop.co.uk",
+        "strivemortgages.co.uk",
+        "swankysets.com",
+        "taylorandmartin.co.uk",
+        "thedesignerrooms.com",
+        "theholytech.com",
+        "trackerintelligence.com",
+        "ukprivateinvestigators.com",
+        "vaperstore.co.uk",
+        "app.vypr.it",
+        "watermans.co.uk",
+        "wetwallpanels.co.uk",
+        "wholesaledomestic.com",
+        "safeprop.co.uk",
+        "drbonaros.com"
+      ];
+
+      const sampleDescriptions = [
+        "herrmanandherrman.com - Personal injury law firm based in Texas, specializing in car accidents, workplace injuries, and wrongful death cases.",
+        "freshcar.co.uk - UK-based mobile car valeting and detailing service offering convenient at-home cleaning solutions.",
+        "homedetail.co.uk - Online retailer offering a wide range of affordable home furniture and décor.",
+        "g2ref.co.uk - UK-based recruitment agency specializing in placing professionals across various industries.",
+        "google.com - Global technology company providing internet-related services and products, including search, advertising, and cloud computing.",
+        "google.com - Global technology company providing internet-related services and products, including search, advertising, and cloud computing.",
+        "google.com - Global technology company providing internet-related services and products, including search, advertising, and cloud computing.",
+        "ablegardeners.com - Professional gardening services offering landscaping, maintenance, and design solutions.",
+        "aboutliving.co.uk - Retailer specializing in contemporary furniture and home accessories.",
+        "affordablegolf.co.uk - Online store offering discounted golf equipment, apparel, and accessories.",
+        "aj-renewables.co.uk - Renewable energy solutions provider specializing in solar panel installations and maintenance.",
+        "allfloorsglasgow.co.uk - Flooring specialist offering a range of flooring solutions, including carpets, vinyl, and hardwood.",
+        "aramaslawexpat.com - Legal services firm catering to expatriates, offering assistance with immigration and international law.",
+        "autopsi.co.uk - Professional car detailing service providing paint correction, ceramic coatings, and valeting.",
+        "beeksgroup.com - Financial services company offering trading infrastructure and connectivity solutions.",
+        "bespokehomefinance.co.uk - Mortgage broker providing tailored home financing solutions.",
+        "brightbustours.com - Tour operator offering open-top bus tours in various cities.",
+        "caffia.com - Supplier of commercial coffee machines and beans for businesses.",
+        "carmoney.co.uk - Car finance broker helping customers find suitable car loan options.",
+        "caterbox.co.uk - Supplier of catering equipment and storage solutions for the foodservice industry.",
+        "cbrsolar.co.uk - Solar energy company specializing in the installation of photovoltaic systems.",
+        "certum.co.uk - IT services provider offering cybersecurity, cloud solutions, and managed IT support.",
+        "classicinteriors.co.uk - Interior design company offering bespoke kitchen and home design services.",
+        "clyde-arc.com - Engineering consultancy providing structural and civil engineering services.",
+        "discountpetsupplies.co.uk - Online retailer offering a wide range of pet products at discounted prices.",
+        "diversediagnostics.co.uk - Healthcare provider specializing in diagnostic services for neurodevelopmental conditions.",
+        "drbonaros.comgallery - Cosmetic surgery clinic offering hair transplant and aesthetic procedures.",
+        "drdarrenmckeown.com - Aesthetic medicine clinic providing non-surgical cosmetic treatments.",
+        "estateagencymoray.co.uk - Real estate agency offering property sales and lettings in the Moray area.",
+        "factoryweights.co.uk - Online retailer of fitness equipment, including weights and gym accessories.",
+        "federalmanagement.co.uk - Debt collection agency offering recovery services for businesses.",
+        "firstvehicleleasing.co.uk - Car leasing company providing personal and business vehicle leasing options.",
+        "fishpatagonia.comthe-reviews - Travel company specializing in fishing expeditions in Patagonia.",
+        "freshcar.co.uk - Mobile car valeting and detailing service operating across the UK, offering convenient at-home vehicle cleaning.",
+        "frontline-collections.com - Debt collection agency offering services for unpaid invoices and debts.",
+        "g2ref.co.uk - Recruitment and staffing agency focused on connecting employers with skilled professionals across multiple industries in the UK.",
+        "gardenersdream.co.uk - Online garden center offering plants, seeds, and gardening supplies.",
+        "gates-scotland.co.uk - Manufacturer and installer of gates and fencing solutions.",
+        "gatesandautomationdirect.co.uk - Supplier of automated gate systems and access control products.",
+        "gdotv.com - Media company producing television content and digital media.",
+        "glenscotia.com - Distillery producing single malt Scotch whisky in Campbeltown, Scotland.",
+        "guitarguitar.co.uk - Retailer specializing in guitars, musical instruments, and related accessories.",
+        "hanselstone.co.uk - Supplier of stone surfaces for kitchens and bathrooms.",
+        "hanselstone.com - Manufacturer of engineered stone products for various applications.",
+        "harpermacleod.co.uk - Full-service law firm offering legal advice across multiple sectors.",
+        "hendry-installations.co.uk - Installation services company specializing in kitchens and bathrooms.",
+        "holon.co.uk - Technology company developing innovative solutions for various industries.",
+        "homedetail.co.uk - Online furniture retailer offering stylish and affordable pieces for every room in the home, including sofas, beds, and storage solutions.",
+        "homerewire.com - Electrical services company specializing in home rewiring and electrical installations.",
+        "hrservicesscotland.co.uk - Human resources consultancy offering HR support and services.",
+        "hyperiontiles.co.uk - Retailer offering a wide range of tiles for residential and commercial projects.",
+        "jrsindustrial.co.uk - Supplier of industrial equipment and maintenance services.",
+        "legionofvapers.com - Online vape shop offering e-liquids, vape kits, and accessories.",
+        "linksforyou.com - Digital marketing agency specializing in link building and SEO services.",
+        "loanza.co.uk - Financial services platform connecting users with loan providers.",
+        "loanza.us - US-based financial services platform offering personal loan connections.",
+        "lochlomondwhiskies.com - Distillery producing a range of Scotch whiskies from the Loch Lomond region.",
+        "logcabinkits.co.uk - Supplier of log cabin kits and garden buildings.",
+        "logos4clothes.com - Custom clothing company offering personalized apparel and embroidery services.",
+        "luxurylightingboutique.com - Retailer specializing in high-end lighting fixtures and chandeliers.",
+        "mannik.co.uk - Fashion brand offering contemporary clothing and accessories.",
+        "google.com - Global technology company providing internet-related services and products, including search, advertising, and cloud computing.",
+        "google.com - Global technology company providing internet-related services and products, including search, advertising, and cloud computing.",
+        "google.com - Global technology company providing internet-related services and products, including search, advertising, and cloud computing.",
+        "google.com - Global technology company providing internet-related services and products, including search, advertising, and cloud computing.",
+        "google.com - Global technology company providing internet-related services and products, including search, advertising, and cloud computing.",
+        "google.com - Global technology company providing internet-related services and products, including search, advertising, and cloud computing.",
+        "google.com - Global technology company providing internet-related services and products, including search, advertising, and cloud computing.",
+        "google.com - Global technology company providing internet-related services and products, including search, advertising, and cloud computing.",
+        "google.com - Global technology company providing internet-related services and products, including search, advertising, and cloud computing.",
+        "google.com - Global technology company providing internet-related services and products, including search, advertising, and cloud computing.",
+        "google.com - Global technology company providing internet-related services and products, including search, advertising, and cloud computing.",
+        "google.com - Global technology company providing internet-related services and products, including search, advertising, and cloud computing.",
+        "google.com - Global technology company providing internet-related services and products, including search, advertising, and cloud computing.",
+        "google.com - Global technology company providing internet-related services and products, including search, advertising, and cloud computing.",
+        "google.com - Global technology company providing internet-related services and products, including search, advertising, and cloud computing.",
+        "google.com - Global technology company providing internet-related services and products, including search, advertising, and cloud computing.",
+        "google.com - Global technology company providing internet-related services and products, including search, advertising, and cloud computing.",
+        "google.com - Global technology company providing internet-related services and products, including search, advertising, and cloud computing.",
+        "google.com - Global technology company providing internet-related services and products, including search, advertising, and cloud computing.",
+        "mitchellmcdermott.com - Construction consultancy providing project management and cost consultancy services.",
+        "myhotelbreak.com - Hotel booking platform offering deals and packages for UK hotels.",
+        "myvoyagescotland.com - Travel guide providing information and tips for exploring Scotland.",
+        "nadcellclinic.com - Medical clinic specializing in NAD+ therapy and wellness treatments.",
+        "plastechgroup.com - Manufacturer of plastic products for various industries.",
+        "plastererglasgow.co.uk - Plastering services company offering interior and exterior plastering.",
+        "precision-um.co.uk - Underwriting agency providing insurance solutions.",
+        "precision-um.ie - Irish branch of the underwriting agency offering insurance products.",
+        "premiercarriage.co.uk - Wedding car hire service offering a range of classic and luxury vehicles.",
+        "pwsglasgow.com - Plumbing and heating services provider based in Glasgow.",
+        "quotegoat.com - Comparison website helping users find deals on insurance, utilities, and more.",
+        "replacewindowslimited.co.uk - Window replacement company offering installation services.",
+        "requiment.com - Technology company specializing in recruitment software solutions.",
+        "rtaesthetics.co.uk - Aesthetic clinic offering non-surgical cosmetic treatments.",
+        "rubberroofingdirect.co.uk - Supplier of EPDM rubber roofing materials and accessories.",
+        "runitcool.co.uk - IT services company offering cooling solutions for data centers.",
+        "seoglasgow.com - SEO agency providing search engine optimization services.",
+        "soccerstarsacademy.co.uk - Football coaching academy offering classes for children.",
+        "solutionsdriven.com - Recruitment agency specializing in talent acquisition and executive search.",
+        "storageboxshop.co.uk - Online retailer of storage boxes and organizational products.",
+        "strivemortgages.co.uk - Mortgage brokerage offering home financing solutions.",
+        "swankysets.com - Online store offering stylish home décor and furniture.",
+        "taylorandmartin.co.uk - Property auctioneers specializing in residential and commercial auctions across Scotland.",
+        "thedesignerrooms.com - Furniture retailer offering luxury and designer-style furniture at affordable prices.",
+        "theholytech.com - Tech blog covering in-depth reviews, comparisons, and guides on various electronics and gadgets.",
+        "trackerintelligence.com - Fleet management software provider offering GPS tracking and telematics solutions.",
+        "ukprivateinvestigators.com - Nationwide private investigation agency offering surveillance, tracing, and legal investigation services.",
+        "vaperstore.co.uk - Online vape store offering e-cigarettes, vape juice, and accessories.",
+        "app.vypr.it - Consumer insight platform that gathers real-time feedback from users for product and brand research.",
+        "watermans.co.uk - Law firm in Scotland offering legal services in personal injury, family law, and more.",
+        "wetwallpanels.co.uk - Supplier of waterproof wall panels for bathrooms and kitchens.",
+        "wholesaledomestic.com - Retailer specializing in bathroom products including suites, furniture, and accessories.",
+        "safeprop.co.uk - Property safety compliance service offering EICRs, PAT testing, gas safety checks, and more.",
+        "drbonaros.com - Specialist clinic in Scotland offering hair transplant and aesthetic procedures."
+      ];
+
+      const projects = [];
+      for (let i = 0; i < 119; i++) {
+        if ([4, 5, 6, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79].includes(i)) {
+          continue;
+        }
+
+        const nameIndex = i % sampleNames.length;
+        const suffix = i >= sampleNames.length ? ` ${Math.floor(i / sampleNames.length) + 1}` : '';
+        const name = sampleNames[nameIndex] + suffix;
+        const urlName = name.toLowerCase().replace(/\s/g, '');
+        const description = sampleDescriptions[nameIndex] + suffix;
+        projects.push({
+          name: name,
+          url: `https://www.${urlName}`,
+          description: description,
+          imgBase: `${i + 1}`
+        });
+      }
+
+      const projectsPerPage = 10;
+      let currentPage = 1;
+
+      // Helper function to check if an image exists
+      function imageExists(src) {
+        return new Promise((resolve) => {
+          const img = new Image();
+          img.onload = () => resolve(true);
+          img.onerror = () => resolve(false);
+          img.src = src;
+        });
+      }
+
+      async function generateProjectHTML(project) {
+        let imagesHTML = '';
+        for (let i = 0; i < 4; i++) {
+          const imgSrc = `img/${project.imgBase}.${i}.jpg`;
+          const exists = await imageExists(imgSrc);
+          if (exists) {
+            imagesHTML += `
+              <img src="${imgSrc}" alt="${project.name} ${project.description} ${i}" class="project-img slide fade" onclick="openModal(this)">
+            `;
+          }
+        }
+
+        return `
+          <li>
+            <strong>
+              <a href="${project.url}" target="_blank" class="zoom-link" style="text-decoration: none; color: inherit;">
+                ${project.name}
+              </a>
+            </strong>: ${project.description}<br>
+            <div class="slideshow-container" id="${project.imgBase}">
+              ${imagesHTML}
+            </div>
+            <br>
+          </li>
+        `;
+      }
+
+      async function displayProjects() {
+        const projectList = document.getElementById("projectList");
+        projectList.innerHTML = "";
+
+        const start = (currentPage - 1) * projectsPerPage;
+        const end = Math.min(start + projectsPerPage, projects.length);
+        const currentProjects = projects.slice(start, end);
+
+        for (const project of currentProjects) {
+          const projectHTML = await generateProjectHTML(project);
+          projectList.innerHTML += projectHTML;
+        }
+
+        document.getElementById("pageIndicator").textContent = `Page ${currentPage}`;
+        initializeSlideshows(currentProjects);
+      }
+
+      function initializeSlideshows(projectSubset) {
+        for (const project of projectSubset) {
+          const container = document.getElementById(project.imgBase);
+          if (!container) continue;
+
+          let slideIndex = 0;
+          const slides = container.querySelectorAll(".slide");
+
+          function showSlide(index) {
+            slides.forEach(slide => slide.style.display = "none");
+            slides[index].style.display = "block";
+          }
+
+          function nextSlide() {
+            slideIndex = (slideIndex + 1) % slides.length;
+            showSlide(slideIndex);
+          }
+
+          if (slides.length > 0) {
+            showSlide(slideIndex);
+            container.slideInterval = setInterval(nextSlide, 2000);
+          }
+        }
+      }
+
+      function prevPage() {
+        if (currentPage > 1) {
+          currentPage--;
+          displayProjects();
+        }
+      }
+
+      function nextPage() {
+        const maxPage = Math.ceil(projects.length / projectsPerPage);
+        if (currentPage < maxPage) {
+          currentPage++;
+          displayProjects();
+        }
+      }
+
+      function openModal(img) {
+        const modal = document.getElementById("imgModal");
+        const modalImg = document.getElementById("modalImg");
+        modal.style.display = "flex";
+        modalImg.src = img.src;
+      }
+
+      function closeModal() {
+        document.getElementById("imgModal").style.display = "none";
+      }
+
+      window.onload = displayProjects;
+    </script>
+
+</body>
+
+</html>
