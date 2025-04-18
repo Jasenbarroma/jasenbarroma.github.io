@@ -586,31 +586,41 @@
       }
 
       async function generateProjectHTML(project) {
-        let imagesHTML = '';
-        for (let i = 0; i < 4; i++) {
-          const imgSrc = `https://jasenbarroma.github.io/portfolio/img/${project.imgBase}.${i}.jpg`;
-          const exists = await imageExists(imgSrc);
-          if (exists) {
-            imagesHTML += `
-              <img src="${imgSrc}" alt="${project.name} ${project.description} ${i}" class="project-img slide fade" onclick="openModal(this)">
-            `;
-          }
-        }
+  let imagesHTML = '';
+  for (let i = 0; i < 4; i++) {
+    const basePath = `https://jasenbarroma.github.io/portfolio/img/${project.imgBase}.${i}`;
+    const lowerSrc = `${basePath}.jpg`;
+    const upperSrc = `${basePath}.JPG`;
 
-        return `
-          <li>
-            <strong>
-              <a href="${project.url}" target="_blank" class="zoom-link" style="text-decoration: none; color: inherit;">
-                ${project.name}
-              </a>
-            </strong>: ${project.description}<br>
-            <div class="slideshow-container" id="${project.imgBase}">
-              ${imagesHTML}
-            </div>
-            <br>
-          </li>
-        `;
-      }
+    let imgSrc = null;
+    if (await imageExists(lowerSrc)) {
+      imgSrc = lowerSrc;
+    } else if (await imageExists(upperSrc)) {
+      imgSrc = upperSrc;
+    }
+
+    if (imgSrc) {
+      imagesHTML += `
+        <img src="${imgSrc}" alt="${project.name} ${project.description} ${i}" class="project-img slide fade" onclick="openModal(this)">
+      `;
+    }
+  }
+
+  return `
+    <li>
+      <strong>
+        <a href="${project.url}" target="_blank" class="zoom-link" style="text-decoration: none; color: inherit;">
+          ${project.name}
+        </a>
+      </strong>: ${project.description}<br>
+      <div class="slideshow-container" id="${project.imgBase}">
+        ${imagesHTML}
+      </div>
+      <br>
+    </li>
+  `;
+}
+
 
       async function displayProjects() {
         const projectList = document.getElementById("projectList");
