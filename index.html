@@ -572,7 +572,7 @@
         });
       }
 
-      const projectsPerPage = 1;
+      const projectsPerPage = 5;
       let currentPage = 1;
 
       // Helper function to check if an image exists
@@ -620,7 +620,6 @@
     </li>
   `;
       }
-
 
       async function displayProjects() {
         const projectList = document.getElementById("projectList");
@@ -677,13 +676,16 @@
           currentPage++;
           displayProjects().then(() => {
             // Scroll to the Website Projects section
-            const section = document.querySelector('section h2:nth-of-type(2)').parentElement;
-            section.scrollIntoView({ behavior: 'smooth' });
-            section.focus({ preventScroll: true }); // optional focus
+            const heading = document.querySelector('section h2:nth-of-type(2)');
+            if (heading && heading.parentElement) {
+              const section = heading.parentElement;
+              section.scrollIntoView({ behavior: 'smooth' });
+              section.focus({ preventScroll: true });
+            }
+
           });
         }
       }
-
 
       function openModal(img) {
         const modal = document.getElementById("imgModal");
