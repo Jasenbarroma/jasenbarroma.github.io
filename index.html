@@ -5,7 +5,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>SEO - Web Portfolio</title>
-  <link rel="icon" type="image/png" href="https://jasenbarroma.github.io/img/seo_icon.png">
+  <link rel="icon" type="image/png" href="https://jasenbarroma.github.io/portfolio/img/seo_icon.png">
   <style>
     body {
       font-family: 'Poppins', sans-serif;
@@ -588,7 +588,7 @@
       async function generateProjectHTML(project) {
         let imagesHTML = '';
         for (let i = 0; i < 4; i++) {
-          const imgSrc = `https://jasenbarroma.github.io/img/${project.imgBase}.${i}.jpg`;
+          const imgSrc = `https://jasenbarroma.github.io/portfolio/img/${project.imgBase}.${i}.jpg`;
           const exists = await imageExists(imgSrc);
           if (exists) {
             imagesHTML += `
