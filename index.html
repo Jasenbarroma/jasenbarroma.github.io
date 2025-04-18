@@ -572,7 +572,7 @@
         });
       }
 
-      const projectsPerPage = 5;
+      const projectsPerPage = 10;
       let currentPage = 1;
 
       // Helper function to check if an image exists
@@ -586,27 +586,27 @@
       }
 
       async function generateProjectHTML(project) {
-  let imagesHTML = '';
-  for (let i = 0; i < 4; i++) {
-    const basePath = `https://jasenbarroma.github.io/img/${project.imgBase}.${i}`;
-    const lowerSrc = `${basePath}.jpg`;
-    const upperSrc = `${basePath}.JPG`;
+        let imagesHTML = '';
+        for (let i = 0; i < 4; i++) {
+          const basePath = `https://jasenbarroma.github.io/img/${project.imgBase}.${i}`;
+          const lowerSrc = `${basePath}.jpg`;
+          const upperSrc = `${basePath}.JPG`;
 
-    let imgSrc = null;
-    if (await imageExists(lowerSrc)) {
-      imgSrc = lowerSrc;
-    } else if (await imageExists(upperSrc)) {
-      imgSrc = upperSrc;
-    }
+          let imgSrc = null;
+          if (await imageExists(lowerSrc)) {
+            imgSrc = lowerSrc;
+          } else if (await imageExists(upperSrc)) {
+            imgSrc = upperSrc;
+          }
 
-    if (imgSrc) {
-      imagesHTML += `
+          if (imgSrc) {
+            imagesHTML += `
         <img src="${imgSrc}" alt="${project.name} ${project.description} ${i}" class="project-img slide fade" onclick="openModal(this)">
       `;
-    }
-  }
+          }
+        }
 
-  return `
+        return `
     <li>
       <strong>
         <a href="${project.url}" target="_blank" class="zoom-link" style="text-decoration: none; color: inherit;">
@@ -619,7 +619,7 @@
       <br>
     </li>
   `;
-}
+      }
 
 
       async function displayProjects() {
@@ -675,9 +675,15 @@
         const maxPage = Math.ceil(projects.length / projectsPerPage);
         if (currentPage < maxPage) {
           currentPage++;
-          displayProjects();
+          displayProjects().then(() => {
+            // Scroll to the Website Projects section
+            const section = document.querySelector('section h2:nth-of-type(2)').parentElement;
+            section.scrollIntoView({ behavior: 'smooth' });
+            section.focus({ preventScroll: true }); // optional focus
+          });
         }
       }
+
 
       function openModal(img) {
         const modal = document.getElementById("imgModal");
