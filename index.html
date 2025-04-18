@@ -588,7 +588,7 @@
       async function generateProjectHTML(project) {
         let imagesHTML = '';
         for (let i = 0; i < 4; i++) {
-          const imgSrc = `img/${project.imgBase}.${i}.jpg`;
+          const imgSrc = `https://jasenbarroma.github.io/img/${project.imgBase}.${i}.jpg`;
           const exists = await imageExists(imgSrc);
           if (exists) {
             imagesHTML += `
