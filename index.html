@@ -919,9 +919,9 @@ function createSlide(data, className = '') {
 }
 
 // Clone first/last
-track.appendChild(createSlide(imageData[0], 'clone'));
-imageData.forEach(data => track.appendChild(createSlide(data)));
-track.insertBefore(createSlide(imageData[imageData.length - 1], 'clone'), track.firstChild);
+track.appendChild(createSlide(imageData[0], 'clone')); // cloned first goes last
+imageData.forEach(data => track.appendChild(createSlide(data))); // real slides
+track.insertBefore(createSlide(imageData[imageData.length - 1], 'clone'), track.firstChild); // cloned last goes first
 
 const slides = document.querySelectorAll('.carousel-slide');
 let index = 1;
@@ -996,10 +996,17 @@ window.addEventListener('load', () => {
   track.addEventListener('transitionend', () => {
   if (index === 0) {
     index = imageData.length;
-    updateSlide(false);
+    track.style.transition = 'none';
+    track.style.transform = `translateX(-${index * 100}%)`;
+    // Force browser to reflow
+    track.offsetHeight; // <-- this forces the update
+    track.style.transition = 'transform 0.4s ease-in-out';
   } else if (index === slides.length - 1) {
     index = 1;
-    updateSlide(false);
+    track.style.transition = 'none';
+    track.style.transform = `translateX(-${index * 100}%)`;
+    track.offsetHeight;
+    track.style.transition = 'transform 0.4s ease-in-out';
   }
   allowShift = true;
 });
