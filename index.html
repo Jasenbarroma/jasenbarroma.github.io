@@ -376,12 +376,8 @@
       </section>
 
      <section class="section">
-      <div class="carousel" id="carousel">
-  <div class="carousel-track" id="track">
-    <div class="carousel-slide"><img src="https://via.placeholder.com/600x300?text=Slide+1" alt=""></div>
-    <div class="carousel-slide"><img src="https://via.placeholder.com/600x300?text=Slide+2" alt=""></div>
-    <div class="carousel-slide"><img src="https://via.placeholder.com/600x300?text=Slide+3" alt=""></div>
-  </div>
+     <div class="carousel" id="carousel">
+  <div class="carousel-track" id="track"></div>
   <div class="arrow left" id="prev">&#10094;</div>
   <div class="arrow right" id="next">&#10095;</div>
 </div>
@@ -809,50 +805,41 @@
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
  <script>
+   const imageNames = ['p1.jpg', 'p2.jpg', 'p3.jpg', 'p4.jpg', 'p5.jpg', 'p6.jpg', 'p7.jpg', 'p8.jpg', 'p9.jpg', 'p10.jpg', 'p11.jpg', 'p12.jpg', 'p13.jpg', 'p14.jpg', 'p15.jpg', 'p16.jpg']; // your image filenames
   const track = document.getElementById('track');
+
+  // Dynamically create slide elements
+  imageNames.forEach(name => {
+    const slide = document.createElement('div');
+    slide.className = 'carousel-slide';
+    const img = document.createElement('img');
+    img.src = `/img/${name}`;
+    slide.appendChild(img);
+    track.appendChild(slide);
+  });
+
   const slides = document.querySelectorAll('.carousel-slide');
-  const prevBtn = document.getElementById('prev');
-  const nextBtn = document.getElementById('next');
   let index = 0;
-  let startX = 0;
-  let isDragging = false;
 
   function updateSlide() {
     track.style.transform = `translateX(-${index * 100}%)`;
   }
 
-  nextBtn.onclick = () => {
+  document.getElementById('next').onclick = () => {
     index = (index + 1) % slides.length;
     updateSlide();
   };
 
-  prevBtn.onclick = () => {
+  document.getElementById('prev').onclick = () => {
     index = (index - 1 + slides.length) % slides.length;
     updateSlide();
   };
 
-  // Touch events
-  track.addEventListener('touchstart', (e) => {
-    startX = e.touches[0].clientX;
-    isDragging = true;
-  });
-
-  track.addEventListener('touchmove', (e) => {
-    if (!isDragging) return;
-    const moveX = e.touches[0].clientX;
-    const diff = startX - moveX;
-    if (diff > 50) {
-      nextBtn.click();
-      isDragging = false;
-    } else if (diff < -50) {
-      prevBtn.click();
-      isDragging = false;
-    }
-  });
-
-  track.addEventListener('touchend', () => {
-    isDragging = false;
-  });
+  // Autoplay
+  setInterval(() => {
+    index = (index + 1) % slides.length;
+    updateSlide();
+  }, 3000);
 </script>
  
 </body>
