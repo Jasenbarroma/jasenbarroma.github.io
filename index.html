@@ -940,17 +940,6 @@ function shiftSlide(dir) {
   allowShift = false;
   index += dir;
   updateSlide();
-
-  setTimeout(() => {
-    if (index === 0) {
-      index = imageData.length;
-      updateSlide(false);
-    } else if (index === slides.length - 1) {
-      index = 1;
-      updateSlide(false);
-    }
-    allowShift = true;
-  }, 400);
 }
 
 function startAutoplay() {
@@ -1002,6 +991,17 @@ track.addEventListener('touchend', () => isDragging = false);
 window.addEventListener('load', () => {
   updateSlide(false);
   startAutoplay();
+});
+
+  track.addEventListener('transitionend', () => {
+  if (index === 0) {
+    index = imageData.length;
+    updateSlide(false);
+  } else if (index === slides.length - 1) {
+    index = 1;
+    updateSlide(false);
+  }
+  allowShift = true;
 });
 
   document.getElementById('modal-close').onclick = () => {
