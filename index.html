@@ -230,7 +230,52 @@
         transform: rotate(360deg);
       }
     }
+
+   
+    .carousel {
+      position: relative;
+      overflow: hidden;
+      width: 100%;
+      max-width: 600px;
+      margin: auto;
+    }
+
+    .carousel-track {
+      display: flex;
+      transition: transform 0.4s ease-in-out;
+    }
+
+    .carousel-slide {
+      min-width: 100%;
+      box-sizing: border-box;
+    }
+
+    .carousel-slide img {
+      width: 100%;
+      display: block;
+    }
+
+    .arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 2rem;
+      color: white;
+      background: rgba(0,0,0,0.5);
+      padding: 0.5rem;
+      cursor: pointer;
+      z-index: 10;
+    }
+
+    .arrow.left {
+      left: 10px;
+    }
+
+    .arrow.right {
+      right: 10px;
+    }
   </style>
+
 </head>
 
 <body>
@@ -329,6 +374,18 @@
             implement redirects, and enhance structured <data value=""></data></li>
         </ul>
       </section>
+
+     <section class="section">
+      <div class="carousel" id="carousel">
+  <div class="carousel-track" id="track">
+    <div class="carousel-slide"><img src="https://via.placeholder.com/600x300?text=Slide+1" alt=""></div>
+    <div class="carousel-slide"><img src="https://via.placeholder.com/600x300?text=Slide+2" alt=""></div>
+    <div class="carousel-slide"><img src="https://via.placeholder.com/600x300?text=Slide+3" alt=""></div>
+  </div>
+  <div class="arrow left" id="prev">&#10094;</div>
+  <div class="arrow right" id="next">&#10095;</div>
+</div>
+     </section>
 
       <section class="section">
         <h2>Contact</h2>
@@ -751,6 +808,53 @@
   </div>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
+ <script>
+  const track = document.getElementById('track');
+  const slides = document.querySelectorAll('.carousel-slide');
+  const prevBtn = document.getElementById('prev');
+  const nextBtn = document.getElementById('next');
+  let index = 0;
+  let startX = 0;
+  let isDragging = false;
+
+  function updateSlide() {
+    track.style.transform = `translateX(-${index * 100}%)`;
+  }
+
+  nextBtn.onclick = () => {
+    index = (index + 1) % slides.length;
+    updateSlide();
+  };
+
+  prevBtn.onclick = () => {
+    index = (index - 1 + slides.length) % slides.length;
+    updateSlide();
+  };
+
+  // Touch events
+  track.addEventListener('touchstart', (e) => {
+    startX = e.touches[0].clientX;
+    isDragging = true;
+  });
+
+  track.addEventListener('touchmove', (e) => {
+    if (!isDragging) return;
+    const moveX = e.touches[0].clientX;
+    const diff = startX - moveX;
+    if (diff > 50) {
+      nextBtn.click();
+      isDragging = false;
+    } else if (diff < -50) {
+      prevBtn.click();
+      isDragging = false;
+    }
+  });
+
+  track.addEventListener('touchend', () => {
+    isDragging = false;
+  });
+</script>
+ 
 </body>
 
 </html>
