@@ -326,6 +326,33 @@
 .modal-close:hover {
   color: #ccc;
 }
+
+
+
+
+
+   .thumbnail-strip {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 20px;
+  padding: 0 1rem;
+}
+
+.thumbnail-strip img {
+  width: 80px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.thumbnail-strip img:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 6px rgba(255, 255, 255, 0.8);
+}
   </style>
 
 </head>
@@ -434,13 +461,15 @@
   <div class="arrow left" id="prev">&#10094;</div>
   <div class="arrow right" id="next">&#10095;</div>
 </div>
+      
+<div class="thumbnail-strip" id="thumbnail-strip"></div>
+      
+     </section>
 
       <div id="image-modal" class="modal">
   <span class="modal-close" id="modal-close">&times;</span>
   <img class="modal-content" id="modal-img">
 </div>
-      
-     </section>
 
       <section class="section">
         <h2>Contact</h2>
@@ -983,6 +1012,25 @@ window.onclick = (e) => {
     document.getElementById('image-modal').style.display = 'none';
   }
 };
+
+
+
+  const thumbnailStrip = document.getElementById('thumbnail-strip');
+
+imageData.forEach(data => {
+  const thumb = document.createElement('img');
+  thumb.src = `/img/${data.src}`;
+  thumb.alt = data.src;
+
+  thumb.onclick = () => {
+    document.getElementById('modal-img').src = thumb.src;
+    document.getElementById('image-modal').style.display = 'block';
+    stopAutoplay();
+  };
+
+  thumbnailStrip.appendChild(thumb);
+});
+
 </script>
  
 </body>
