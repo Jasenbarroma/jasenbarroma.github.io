@@ -922,9 +922,9 @@ function createSlide(data, className = '') {
 const track = document.getElementById('track');
 
 // 1. Append slides
-track.appendChild(createSlide(imageData[0], 'clone')); // Clone of first (for seamless loop end)
+//track.appendChild(createSlide(imageData[0], 'clone')); // Clone of first (for seamless loop end)
 imageData.forEach(data => track.appendChild(createSlide(data))); // Real slides
-track.insertBefore(createSlide(imageData[imageData.length - 1], 'clone'), track.firstChild); // Clone of last (for seamless loop start)
+//track.insertBefore(createSlide(imageData[imageData.length - 1], 'clone'), track.firstChild); // Clone of last (for seamless loop start)
 
 // 2. THEN select all slides
 const slides = document.querySelectorAll('.carousel-slide');
