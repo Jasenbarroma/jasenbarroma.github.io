@@ -928,7 +928,7 @@ imageData.forEach(data => track.appendChild(createSlide(data))); // Real slides
 
 // 2. THEN select all slides
 const slides = document.querySelectorAll('.carousel-slide');
-let index = 1;
+let index = 0;
 let allowShift = true;
 let autoplay = true;
 let autoplayInterval = null;
@@ -942,8 +942,18 @@ function updateSlide(animate = true) {
 function shiftSlide(dir) {
   if (!allowShift) return;
   allowShift = false;
-  index += dir;
+
+  const newIndex = index + dir;
+
+  // Prevent going out of bounds
+  if (newIndex < 0 || newIndex >= slides.length) {
+    allowShift = true;
+    return;
+  }
+
+  index = newIndex;
   updateSlide();
+  setTimeout(() => allowShift = true, 400);
 }
 
 function startAutoplay() {
@@ -997,7 +1007,8 @@ window.addEventListener('load', () => {
   startAutoplay();
 });
 
-  track.addEventListener('transitionend', () => {
+ /* 
+ track.addEventListener('transitionend', () => {
   // When landing on the cloned p1 (at end)
   if (index === slides.length - 1) {
     track.style.transition = 'none';
@@ -1017,7 +1028,8 @@ window.addEventListener('load', () => {
     });
   }
   allowShift = true;
-});
+}); 
+*/
 
 
   document.getElementById('modal-close').onclick = () => {
