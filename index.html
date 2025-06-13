@@ -818,50 +818,112 @@
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
  <script>
-   const imageNames = ['p1.jpg', 'p2.jpg', 'p3.jpg', 'p4.jpg', 'p5.jpg', 'p6.jpg', 'p7.jpg', 'p8.jpg', 'p9.jpg', 'p10.jpg', 'p11.jpg', 'p12.jpg', 'p13.jpg', 'p14.jpg', 'p15.jpg', 'p16.jpg']; // your image filenames
-  const track = document.getElementById('track');
+  const imageData = Array.from({ length: 16 }, (_, i) => ({
+  src: `p${i + 1}.jpg`,
+  link: `/img/p${i + 1}.jpg` // You can customize this URL
+}));
 
-imageNames.forEach(name => {
+const track = document.getElementById('track');
+
+// Helper to build a clickable slide
+function createSlide(data, className = '') {
   const slide = document.createElement('div');
-  slide.className = 'carousel-slide';
+  slide.className = 'carousel-slide ' + className;
+  const a = document.createElement('a');
+  a.href = data.link;
+  a.target = '_blank'; // Open in new tab (optional)
   const img = document.createElement('img');
-  img.src = `/img/${name}`;
-  slide.appendChild(img);
-  track.appendChild(slide);
-});
-
-const slides = document.querySelectorAll('.carousel-slide');
-let index = 0;
-
-function updateSlide() {
-  const offset = index * 100;
-  track.style.transform = `translateX(-${offset}%)`;
-
-  slides.forEach((slide, i) => {
-    slide.classList.remove('active');
-    if (i === index) {
-      slide.classList.add('active');
-    }
-  });
+  img.src = `/img/${data.src}`;
+  a.appendChild(img);
+  slide.appendChild(a);
+  return slide;
 }
 
-document.getElementById('next').onclick = () => {
-  index = (index + 1) % slides.length;
-  updateSlide();
-};
+// Clone first/last
+track.appendChild(createSlide(imageData[0], 'clone'));
+imageData.forEach(data => track.appendChild(createSlide(data)));
+track.insertBefore(createSlide(imageData[imageData.length - 1], 'clone'), track.firstChild);
 
-document.getElementById('prev').onclick = () => {
-  index = (index - 1 + slides.length) % slides.length;
-  updateSlide();
-};
+const slides = document.querySelectorAll('.carousel-slide');
+let index = 1;
+let allowShift = true;
+let autoplay = true;
+let autoplayInterval = null;
 
-setInterval(() => {
-  index = (index + 1) % slides.length;
-  updateSlide();
-}, 3000);
+function updateSlide(animate = true) {
+  track.style.transition = animate ? 'transform 0.4s ease-in-out' : 'none';
+  track.style.transform = `translateX(-${index * 100}%)`;
+  slides.forEach((s, i) => s.classList.toggle('active', i === index));
+}
 
-// Initialize first slide
-updateSlide();
+function shiftSlide(dir) {
+  if (!allowShift) return;
+  allowShift = false;
+  index += dir;
+  updateSlide();
+
+  setTimeout(() => {
+    if (index === 0) {
+      index = imageData.length;
+      updateSlide(false);
+    } else if (index === slides.length - 1) {
+      index = 1;
+      updateSlide(false);
+    }
+    allowShift = true;
+  }, 400);
+}
+
+function startAutoplay() {
+  autoplay = true;
+  autoplayInterval = setInterval(() => shiftSlide(1), 3000);
+}
+
+function stopAutoplay() {
+  autoplay = false;
+  clearInterval(autoplayInterval);
+}
+
+// Controls
+document.getElementById('next').onclick = () => shiftSlide(1);
+document.getElementById('prev').onclick = () => shiftSlide(-1);
+
+// Pause on hover
+const carousel = document.getElementById('carousel');
+carousel.addEventListener('mouseenter', stopAutoplay);
+carousel.addEventListener('mouseleave', () => {
+  if (!autoplay) return;
+  startAutoplay();
+});
+
+// Stop autoplay on click
+track.addEventListener('click', () => stopAutoplay());
+
+// Touch support
+let startX = 0, isDragging = false;
+track.addEventListener('touchstart', e => {
+  stopAutoplay();
+  startX = e.touches[0].clientX;
+  isDragging = true;
+});
+track.addEventListener('touchmove', e => {
+  if (!isDragging) return;
+  const deltaX = e.touches[0].clientX - startX;
+  if (deltaX > 50) {
+    shiftSlide(-1);
+    isDragging = false;
+  } else if (deltaX < -50) {
+    shiftSlide(1);
+    isDragging = false;
+  }
+});
+track.addEventListener('touchend', () => isDragging = false);
+
+// Initialize
+window.addEventListener('load', () => {
+  updateSlide(false);
+  startAutoplay();
+});
 </script>
  
 </body>
