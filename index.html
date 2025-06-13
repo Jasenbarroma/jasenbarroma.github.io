@@ -897,7 +897,7 @@
   src: `p${i + 1}.jpg`
 }));
 
-const track = document.getElementById('track');
+//const track = document.getElementById('track');
 
 // Helper to build a clickable slide
 function createSlide(data, className = '') {
@@ -919,10 +919,14 @@ function createSlide(data, className = '') {
 }
 
 // Clone first/last
-track.appendChild(createSlide(imageData[0], 'clone')); // cloned first goes last
-imageData.forEach(data => track.appendChild(createSlide(data))); // real slides
-track.insertBefore(createSlide(imageData[imageData.length - 1], 'clone'), track.firstChild); // cloned last goes first
+const track = document.getElementById('track');
 
+// 1. Append slides
+track.appendChild(createSlide(imageData[0], 'clone')); // Clone of first (for seamless loop end)
+imageData.forEach(data => track.appendChild(createSlide(data))); // Real slides
+track.insertBefore(createSlide(imageData[imageData.length - 1], 'clone'), track.firstChild); // Clone of last (for seamless loop start)
+
+// 2. THEN select all slides
 const slides = document.querySelectorAll('.carousel-slide');
 let index = 1;
 let allowShift = true;
@@ -994,18 +998,19 @@ window.addEventListener('load', () => {
 });
 
   track.addEventListener('transitionend', () => {
+  // When landing on the cloned p1 (at end)
   if (index === slides.length - 1) {
-    // Currently on clone of p1.jpg
     track.style.transition = 'none';
-    index = 1; // real p1.jpg
+    index = 1;  // go to real p1
     track.style.transform = `translateX(-${index * 100}%)`;
     requestAnimationFrame(() => {
       track.style.transition = 'transform 0.4s ease-in-out';
     });
-  } else if (index === 0) {
-    // Currently on clone of p16.jpg
+  }
+  // When landing on cloned p16 (at start)
+  else if (index === 0) {
     track.style.transition = 'none';
-    index = imageData.length; // real p16.jpg
+    index = imageData.length;  // go to real p16
     track.style.transform = `translateX(-${index * 100}%)`;
     requestAnimationFrame(() => {
       track.style.transition = 'transform 0.4s ease-in-out';
@@ -1013,6 +1018,7 @@ window.addEventListener('load', () => {
   }
   allowShift = true;
 });
+
 
   document.getElementById('modal-close').onclick = () => {
   document.getElementById('image-modal').style.display = 'none';
