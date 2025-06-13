@@ -232,7 +232,9 @@
     }
 
    
-    
+
+
+   
    .carousel {
   position: relative;
   overflow: hidden;
@@ -285,6 +287,44 @@
 }
 .arrow.right {
   right: 10px;
+}
+
+
+
+
+
+
+
+   .modal {
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  padding-top: 60px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background: rgba(0,0,0,0.9);
+}
+.modal-content {
+  margin: auto;
+  display: block;
+  max-width: 90%;
+  max-height: 80vh;
+  border-radius: 10px;
+}
+.modal-close {
+  position: absolute;
+  top: 30px;
+  right: 40px;
+  color: white;
+  font-size: 40px;
+  font-weight: bold;
+  cursor: pointer;
+}
+.modal-close:hover {
+  color: #ccc;
 }
   </style>
 
@@ -393,6 +433,11 @@
   <div class="carousel-track" id="track"></div>
   <div class="arrow left" id="prev">&#10094;</div>
   <div class="arrow right" id="next">&#10095;</div>
+
+      <div id="image-modal" class="modal">
+  <span class="modal-close" id="modal-close">&times;</span>
+  <img class="modal-content" id="modal-img">
+</div>
 </div>
      </section>
 
@@ -819,8 +864,7 @@
 
  <script>
   const imageData = Array.from({ length: 16 }, (_, i) => ({
-  src: `p${i + 1}.jpg`,
-  link: `/img/p${i + 1}.jpg` // You can customize this URL
+  src: `p${i + 1}.jpg`
 }));
 
 const track = document.getElementById('track');
@@ -829,13 +873,18 @@ const track = document.getElementById('track');
 function createSlide(data, className = '') {
   const slide = document.createElement('div');
   slide.className = 'carousel-slide ' + className;
-  const a = document.createElement('a');
-  a.href = data.link;
-  a.target = '_blank'; // Open in new tab (optional)
   const img = document.createElement('img');
   img.src = `/img/${data.src}`;
-  a.appendChild(img);
-  slide.appendChild(a);
+  img.alt = data.src;
+  img.style.cursor = 'pointer';
+
+  img.onclick = () => {
+    document.getElementById('modal-img').src = img.src;
+    document.getElementById('image-modal').style.display = 'block';
+    stopAutoplay();
+  };
+
+  slide.appendChild(img);
   return slide;
 }
 
@@ -924,6 +973,15 @@ window.addEventListener('load', () => {
   updateSlide(false);
   startAutoplay();
 });
+
+  document.getElementById('modal-close').onclick = () => {
+  document.getElementById('image-modal').style.display = 'none';
+};
+window.onclick = (e) => {
+  if (e.target === document.getElementById('image-modal')) {
+    document.getElementById('image-modal').style.display = 'none';
+  }
+};
 </script>
  
 </body>
