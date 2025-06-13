@@ -994,19 +994,22 @@ window.addEventListener('load', () => {
 });
 
   track.addEventListener('transitionend', () => {
-  if (index === 0) {
-    index = imageData.length;
+  if (index === slides.length - 1) {
+    // Currently on clone of p1.jpg
     track.style.transition = 'none';
+    index = 1; // real p1.jpg
     track.style.transform = `translateX(-${index * 100}%)`;
-    // Force browser to reflow
-    track.offsetHeight; // <-- this forces the update
-    track.style.transition = 'transform 0.4s ease-in-out';
-  } else if (index === slides.length - 1) {
-    index = 1;
+    requestAnimationFrame(() => {
+      track.style.transition = 'transform 0.4s ease-in-out';
+    });
+  } else if (index === 0) {
+    // Currently on clone of p16.jpg
     track.style.transition = 'none';
+    index = imageData.length; // real p16.jpg
     track.style.transform = `translateX(-${index * 100}%)`;
-    track.offsetHeight;
-    track.style.transition = 'transform 0.4s ease-in-out';
+    requestAnimationFrame(() => {
+      track.style.transition = 'transform 0.4s ease-in-out';
+    });
   }
   allowShift = true;
 });
