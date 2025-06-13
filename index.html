@@ -232,48 +232,60 @@
     }
 
    
-    .carousel {
-      position: relative;
-      overflow: hidden;
-      width: 100%;
-      max-width: 600px;
-      margin: auto;
-    }
+    
+   .carousel {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  max-width: 800px;
+  margin: auto;
+}
 
-    .carousel-track {
-      display: flex;
-      transition: transform 0.4s ease-in-out;
-    }
+.carousel-track {
+  display: flex;
+  transition: transform 0.4s ease-in-out;
+  transform-style: preserve-3d;
+}
 
-    .carousel-slide {
-      min-width: 100%;
-      box-sizing: border-box;
-    }
+.carousel-slide {
+  flex: 0 0 100%;
+  transform: scale(0.8);
+  opacity: 0.5;
+  transition: transform 0.4s ease, opacity 0.4s ease;
+  padding: 0 10px;
+  box-sizing: border-box;
+}
 
-    .carousel-slide img {
-      width: 100%;
-      display: block;
-    }
+.carousel-slide img {
+  width: 100%;
+  border-radius: 10px;
+  display: block;
+}
 
-    .arrow {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      font-size: 2rem;
-      color: white;
-      background: rgba(0,0,0,0.5);
-      padding: 0.5rem;
-      cursor: pointer;
-      z-index: 10;
-    }
+.carousel-slide.active {
+  transform: scale(1);
+  opacity: 1;
+}
 
-    .arrow.left {
-      left: 10px;
-    }
+.arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 2rem;
+  color: white;
+  background: rgba(0, 0, 0, 0.5);
+  padding: 0.5rem;
+  cursor: pointer;
+  z-index: 10;
+  user-select: none;
+}
 
-    .arrow.right {
-      right: 10px;
-    }
+.arrow.left {
+  left: 10px;
+}
+.arrow.right {
+  right: 10px;
+}
   </style>
 
 </head>
@@ -376,6 +388,7 @@
       </section>
 
      <section class="section">
+       <h2>Certificates</h2>
      <div class="carousel" id="carousel">
   <div class="carousel-track" id="track"></div>
   <div class="arrow left" id="prev">&#10094;</div>
@@ -808,38 +821,47 @@
    const imageNames = ['p1.jpg', 'p2.jpg', 'p3.jpg', 'p4.jpg', 'p5.jpg', 'p6.jpg', 'p7.jpg', 'p8.jpg', 'p9.jpg', 'p10.jpg', 'p11.jpg', 'p12.jpg', 'p13.jpg', 'p14.jpg', 'p15.jpg', 'p16.jpg']; // your image filenames
   const track = document.getElementById('track');
 
-  // Dynamically create slide elements
-  imageNames.forEach(name => {
-    const slide = document.createElement('div');
-    slide.className = 'carousel-slide';
-    const img = document.createElement('img');
-    img.src = `/img/${name}`;
-    slide.appendChild(img);
-    track.appendChild(slide);
+imageNames.forEach(name => {
+  const slide = document.createElement('div');
+  slide.className = 'carousel-slide';
+  const img = document.createElement('img');
+  img.src = `/img/${name}`;
+  slide.appendChild(img);
+  track.appendChild(slide);
+});
+
+const slides = document.querySelectorAll('.carousel-slide');
+let index = 0;
+
+function updateSlide() {
+  const offset = index * 100;
+  track.style.transform = `translateX(-${offset}%)`;
+
+  slides.forEach((slide, i) => {
+    slide.classList.remove('active');
+    if (i === index) {
+      slide.classList.add('active');
+    }
   });
+}
 
-  const slides = document.querySelectorAll('.carousel-slide');
-  let index = 0;
+document.getElementById('next').onclick = () => {
+  index = (index + 1) % slides.length;
+  updateSlide();
+};
 
-  function updateSlide() {
-    track.style.transform = `translateX(-${index * 100}%)`;
-  }
+document.getElementById('prev').onclick = () => {
+  index = (index - 1 + slides.length) % slides.length;
+  updateSlide();
+};
 
-  document.getElementById('next').onclick = () => {
-    index = (index + 1) % slides.length;
-    updateSlide();
-  };
+setInterval(() => {
+  index = (index + 1) % slides.length;
+  updateSlide();
+}, 3000);
 
-  document.getElementById('prev').onclick = () => {
-    index = (index - 1 + slides.length) % slides.length;
-    updateSlide();
-  };
-
-  // Autoplay
-  setInterval(() => {
-    index = (index + 1) % slides.length;
-    updateSlide();
-  }, 3000);
+// Initialize first slide
+updateSlide();
 </script>
  
 </body>
