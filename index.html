@@ -1,211 +1,160 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SEO - Web Portfolio</title>
-  <link rel="icon" href="https://jasenbarroma.github.io/img/seo_icon.ico" type="image/x-icon">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet" />
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet" />
-  
+  <title>Jasen Robert Barroma | Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
-    body {
-      font-family: 'Poppins', sans-serif;
+    /* ===== General Reset ===== */
+    * {
       margin: 0;
       padding: 0;
-      background-color: #f9f9f9;
-      color: #333;
+      box-sizing: border-box;
+    }
+
+    /* ===== Body and Typography ===== */
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #f5f7fb;
+      color: #2e2e2e;
       line-height: 1.6;
+      scroll-behavior: smooth;
     }
 
+    /* ===== Header ===== */
     header {
-      background: linear-gradient(135deg, #6e8efb, #77c4e3);
+      background: linear-gradient(120deg, #4e54c8, #8f94fb);
       color: #fff;
-      padding: 30px;
+      padding: 60px 20px;
       text-align: center;
-      font-size: 1.5rem;
-      font-weight: bold;
+      border-bottom: 4px solid #fff;
     }
 
+    header h1 {
+      font-size: 2.2rem;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+
+    header p {
+      font-size: 1.1rem;
+      opacity: 0.9;
+    }
+
+    /* ===== Container ===== */
     .container {
       width: 90%;
-      max-width: 1200px;
-      margin: auto;
-      overflow: hidden;
-      padding: 20px 0;
+      max-width: 1100px;
+      margin: 40px auto;
     }
 
+    /* ===== Section Styling ===== */
     .section {
-      background: #fff;
-      padding: 30px;
-      margin: 20px 0;
-      border-radius: 10px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      transition: transform 0.3s ease-in-out;
+      background: #ffffff;
+      padding: 30px 40px;
+      margin-bottom: 25px;
+      border-radius: 15px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+      transition: all 0.3s ease;
     }
 
     .section:hover {
-      transform: scale(1.02);
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
     }
 
-    .project-img {
-      width: 100%;
-      max-width: 900px;
-      display: block;
-      margin: 20px auto;
-      border-radius: 10px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      transition: transform 0.3s ease-in-out;
+    .section h2 {
+      color: #4e54c8;
+      border-left: 5px solid #8f94fb;
+      padding-left: 10px;
+      margin-bottom: 15px;
     }
 
-    .project-img:hover {
-      transform: scale(1.05);
+    /* ===== Lists ===== */
+    .section ul {
+      list-style: none;
+      padding-left: 0;
     }
 
-    .modal {
-      display: none;
-      position: fixed;
-      z-index: 1000;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0, 0, 0, 0.8);
-      justify-content: center;
-      align-items: center;
+    .section li {
+      padding: 6px 0;
+      border-bottom: 1px dashed #ddd;
     }
 
-    .modal-content {
-      max-width: 90%;
-      max-height: 90%;
-      border-radius: 10px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    .section li:last-child {
+      border: none;
     }
 
-    .close {
-      position: absolute;
-      top: 20px;
-      right: 30px;
-      font-size: 40px;
-      font-weight: bold;
-      color: white;
-      cursor: pointer;
-    }
-
-    footer {
-      text-align: center;
-      padding: 20px;
-      background: #333;
-      color: white;
-      margin-top: 20px;
-      font-size: 0.9rem;
-    }
-
+    /* ===== Links ===== */
     a {
-      color: #6e8efb;
+      color: #4e54c8;
       text-decoration: none;
-      font-weight: bold;
+      font-weight: 500;
+      transition: color 0.2s ease;
     }
 
     a:hover {
+      color: #8f94fb;
       text-decoration: underline;
     }
 
-    .slideshow-container {
+    /* ===== Project Images ===== */
+    .project-img {
       width: 100%;
-      /* Set your desired width */
-      height: 500px;
-      /* Set your desired height */
-      overflow: hidden;
-      position: relative;
-    }
-
-    .slideshow-container .slide {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      /* Or use `contain` if you don't want to crop */
-      display: none;
-      /* Hidden by default */
-      position: absolute;
-      top: 0;
-      left: 0;
-    }
-
-    .slideshow-container .slide:first-child {
+      max-width: 850px;
       display: block;
-      /* Show the first slide initially */
-    }
-
-    .slideshow-container img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      /* use `contain` if you want to show full image with possible gaps */
-      position: absolute;
-      top: 0;
-      left: 0;
-    }
-
-    .slide {
-      display: none;
-      width: 100%;
+      margin: 15px auto;
       border-radius: 10px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
 
-    .fade {
-      animation: fadeEffect 1.5s ease-in-out;
+    .project-img:hover {
+      transform: scale(1.03);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
     }
 
-    @keyframes fadeEffect {
-      from {
-        opacity: 0.4;
-      }
-
-      to {
-        opacity: 1;
-      }
-    }
-
-    .zoom-link {
-      display: inline-block;
-      transition: transform 0.3s ease, color 0.3s ease;
-    }
-
-    .zoom-link:hover {
-      transform: scale(1.1);
-      color: #ffeb3b;
-    }
-
+    /* ===== Pagination ===== */
     .pagination {
       text-align: center;
-      margin-top: 20px;
+      margin-top: 25px;
     }
 
     .pagination button {
-      padding: 8px 16px;
-      margin: 0 5px;
-      font-size: 1rem;
+      background: #4e54c8;
       border: none;
-      background: #6e8efb;
-      color: white;
-      border-radius: 5px;
+      color: #fff;
+      padding: 10px 18px;
+      margin: 0 8px;
+      border-radius: 8px;
       cursor: pointer;
+      transition: background 0.3s ease;
+      font-weight: 500;
     }
 
     .pagination button:hover {
-      background: #4f6ddc;
+      background: #3f45b1;
     }
 
+    /* ===== Footer ===== */
+    footer {
+      background: #2e2e2e;
+      color: #ccc;
+      text-align: center;
+      padding: 20px;
+      font-size: 0.9rem;
+      letter-spacing: 0.3px;
+    }
+
+    /* ===== Loader ===== */
     #loader {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      background-color: rgba(255, 255, 255, 0.8);
+      background: rgba(255, 255, 255, 0.85);
       z-index: 2000;
       display: flex;
       justify-content: center;
@@ -214,873 +163,82 @@
 
     .spinner {
       border: 6px solid #f3f3f3;
-      border-top: 6px solid #6e8efb;
+      border-top: 6px solid #4e54c8;
       border-radius: 50%;
-      width: 50px;
-      height: 50px;
+      width: 55px;
+      height: 55px;
       animation: spin 1s linear infinite;
     }
 
     @keyframes spin {
-      0% {
-        transform: rotate(0deg);
-      }
-
-      100% {
-        transform: rotate(360deg);
-      }
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
     }
 
-   
-
-
-   
-   .carousel {
-  position: relative;
-  overflow: hidden;
-  width: 100%;
-  max-width: 800px;
-  margin: auto;
-}
-
-.carousel-track {
-  display: flex;
-  transition: transform 0.4s ease-in-out;
-  transform-style: preserve-3d;
-}
-
-.carousel-slide {
-  flex: 0 0 100%;
-  transform: scale(0.8);
-  opacity: 0.5;
-  transition: transform 0.4s ease, opacity 0.4s ease;
-  padding: 0 10px;
-  box-sizing: border-box;
-}
-
-.carousel-slide img {
-  width: 100%;
-  border-radius: 10px;
-  display: block;
-}
-
-.carousel-slide.active {
-  transform: scale(1);
-  opacity: 1;
-}
-
-.arrow {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  font-size: 2rem;
-  color: white;
-  background: rgba(0, 0, 0, 0.5);
-  padding: 0.5rem;
-  cursor: pointer;
-  z-index: 10;
-  user-select: none;
-}
-
-.arrow.left {
-  left: 10px;
-}
-.arrow.right {
-  right: 10px;
-}
-
-
-
-
-
-
-
-   .modal {
-  display: none;
-  position: fixed;
-  z-index: 9999;
-  padding-top: 60px;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  overflow: auto;
-  background: rgba(0,0,0,0.9);
-}
-.modal-content {
-  margin: auto;
-  display: block;
-  max-width: 90%;
-  max-height: 80vh;
-  border-radius: 10px;
-}
-.modal-close {
-  position: absolute;
-  top: 30px;
-  right: 40px;
-  color: white;
-  font-size: 40px;
-  font-weight: bold;
-  cursor: pointer;
-}
-.modal-close:hover {
-  color: #ccc;
-}
-
-
-
-
-
-   .thumbnail-strip {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 10px;
-  margin-top: 20px;
-  padding: 0 1rem;
-}
-
-.thumbnail-strip img {
-  width: 80px;
-  height: 60px;
-  object-fit: cover;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: transform 0.2s;
-}
-
-.thumbnail-strip img:hover {
-  transform: scale(1.1);
-  box-shadow: 0 0 6px rgba(255, 255, 255, 0.8);
-}
+    /* ===== Responsive Design ===== */
+    @media (max-width: 768px) {
+      header h1 { font-size: 1.8rem; }
+      .section { padding: 20px; }
+      .project-img { max-width: 100%; }
+    }
   </style>
-
 </head>
-
 <body>
+  <div id="loader">
+    <div class="spinner"></div>
+  </div>
+
   <header>
     <h1>Jasen Robert Barroma</h1>
-    <p>Technical SEO / Go High Level Expert</p>
+    <p>Technical SEO Specialist | GHL Expert | Web Performance Optimizer</p>
   </header>
 
   <div class="container">
+    <section class="section">
+      <h2>About Me</h2>
+      <p>
+        I’m a results-driven professional specializing in Technical SEO, GoHighLevel automation, and website optimization. 
+        Passionate about improving digital performance and creating user-focused solutions.
+      </p>
+    </section>
 
-    <div class="container">
-      <section class="section">
-        <h2>About Me</h2>
-        <p>Experienced Operations Leader with 5 years in the IT
-          industry, specializing in AWS application support and
-          telephony, with a strong focus on enhancing system
-          efficiency and reducing downtime by proactively addressing telco infrastructure issues. Skilled in Cloud
-          Infrastructure Management and backed by over 3 years of experience in the BPO industry. Excellent reputation
-          for
-          resolving problems and improving customer satisfaction.
-        <p>In addition to core operations expertise, worked as a Freelance Technical SEO Executive and GoHighLevel (GHL) Specialist, helping businesses improve their online visibility by optimizing website architecture, page speed, and technical on-page elements. This role involved conducting in-depth website audits, implementing SEO best practices to boost search engine rankings, and building automated funnels and CRM systems in GoHighLevel to enhance lead management and conversions. An organized and dependable professional, successful at managing multiple priorities with a positive attitude.
-        <p>Willing to take on added responsibilities to meet team
-          goals. Dedicated Technical SEO executive with a history of meeting company objectives
-          through consistent and structured practices. Skilled in working under pressure and adapting to new situations
-          and
-          challenges to enhance the organizational brand.
-        </p>
-      </section>
+    <section class="section">
+      <h2>Projects</h2>
+      <ul>
+        <li><a href="#">Shopify Technical SEO Optimization</a></li>
+        <li><a href="#">GoHighLevel Automation Setup</a></li>
+        <li><a href="#">WordPress Speed Enhancement</a></li>
+      </ul>
+      <img src="https://via.placeholder.com/800x400?text=Project+Preview" alt="Project Preview" class="project-img">
+    </section>
 
-      <section class="section">
-        <ul>
-          <li>Go High Level</li>
-          <li>Technical Skills</li>
-          <li>WordPress</li>
-          <li>Screaming Frog</li>
-          <li>SemRush</li>
-          <li>PageSpeed Insights</li>
-          <li>Shopify</li>
-          <li>Technical SEO “Search Engine Optimization”</li>
-          <li>PowerShell</li>
-          <li>Hyper-V</li>
-          <li>Active Directory</li>
-          <li>Group Policy Object</li>
-          <li>DHCP</li>
-          <li>DNS</li>
-          <li>Virtualization</li>
-          <li>Knowledgeable in CCNA</li>
-          <li>Basic Knowledge in MS Office</li>
-          <li>Basic Knowledge in LAN PC Networking</li>
-          <li>Knowledge in computer hardware and software installation and troubleshooting</li>
-          <li>Window Server</li>   
-          <li>Amazon Web Services</li>
-          <li>Zoom Admin / Support</li>
-          <li>Adobe Premiere Pro</li>
-          <li>Video Editing</li>
-          <li>SolarWinds</li>
-          <li>ConnectWise</li>
-         
-        </ul>
-         <br>
-       
-         <ul>
-         <h2>Soft Skill</h2>
-          <li>Ability to accept & incorporate constructive feedback to improve performance</li>
-          <li>Organized</li>
-          <li>Technical Support</li>
-          <li>Willing to work in minimal supervision and determined</li>
-          <li>High multi-tasking skills</li>
-          <li>Team Management</li>
-          <li>Works under pressure</li>
-          <li>Team-player</li>
-          <li>Cooperative</li>
-          <li>Problem Solving</li>
-          <li>Technical Support</li>
-        </ul>
-        <br>
-       
-         <ul>
-         <h2>Key Skills</h2>
-         <li>SEO Audits (SemRush ,Screaming Frog , Google Search Console, Page speed insight, Google Analytics, etc)</li>
-         <li>On-page & Technical SEO (Core Web Vitals, Internal Linking)</li>
-         <li>WordPress, Shopify, Local SEO (GMB, Local Viking)</li>
-         <li>Page Speed Optimization (WP Rocket,Humming Bird, etc )</li>
-         <li>Redirects, Link Disavows, Crawl Optimization</li>
-         <li>Collaboration with Dev & Content Teams</li>
-         <li>Mobile Optimizations</li>
-         <li>Wordpress Security</li>
-         </ul>
-        <br>
+    <section class="section">
+      <h2>Skills</h2>
+      <ul>
+        <li>Technical SEO Auditing</li>
+        <li>Shopify & WordPress Optimization</li>
+        <li>GoHighLevel Automation</li>
+        <li>Google Search Console & Analytics</li>
+        <li>Performance & Core Web Vitals Improvement</li>
+      </ul>
+    </section>
 
-        <ul>
-        <h2>Technical SEO Experience</h2>
-          <li>Conducted SEO audits fixing broken links, orphaned pages, and crawl depth issues.</li>
-          <li>Optimized Core Web Vitals, improving LCP and FCP Mobile and Desktop</li>
-          <li>Fixes content issues including multiple Heading tags, missing ALT text</li>
-          <li>Managed redirects , link disavows, and internal linking to enhance crawlability</li>
-          <li>Enhanced local SEO visibility via GMB post scheduling across multiple locations</li>
-          <li>Collaborated with dev teams to resolve 4XX errors, implement redirects, and align category structures</li>
-          <li>Monitored performance via pingdom, Gtmetrix, Google Analytics, GSC, Page speed insight, SemRush and generated detailed reports</li>
-        </ul>
-      </section>
-
-     <section class="section">
-       <h2>Certificates</h2>
-     <div class="carousel" id="carousel">
-  <div class="carousel-track" id="track"></div>
-  <div class="arrow left" id="prev">&#10094;</div>
-  <div class="arrow right" id="next">&#10095;</div>
-</div>
-      
-<div class="thumbnail-strip" id="thumbnail-strip"></div>
-      
-     </section>
-
-      <div id="image-modal" class="modal">
-  <span class="modal-close" id="modal-close">&times;</span>
-  <img class="modal-content" id="modal-img">
-</div>
-
-      <section class="section">
-        <h2>Contact</h2>
-        <p>Email: seojasenbarroma@gmail.com</p>
-        <p>Phone: 09493900555 / 0288230736</p>
-      </section>
-
-      <section class="section " tabindex="-1">
-        <h2>Website Projects</h2>
-        <ul id="projectList"></ul>
-        <div class="pagination">
-          <button onclick="prevPage()">Previous</button>
-          <span id="pageIndicator">Page 1</span>
-          <button onclick="nextPage()">Next</button>
-        </div>
-
-        <div id="loader" style="display: none;">
-          <div class="spinner"></div>
-        </div>
-      </section>
-
-    </div>
-
-    <div id="imgModal" class="modal" onclick="closeModal()">
-      <span class="close">&times;</span>
-      <img class="modal-content" id="modalImg" />
-    </div>
-
-    <footer>
-      <p>&copy; 2025 Jasen Robert Barroma. All Rights Reserved.</p>
-    </footer>
-<!--Start number 0-10-->
-   
-    <script>
-      const sampleNames = [
-        "myseeds.de",
-        "freshcar.co.uk",
-        "homedetail.co.uk",
-        "g2ref.co.uk",
-        "google.com",
-        "google.com",
-        "google.com",
-        "ablegardeners.com",
-        "aboutliving.co.uk",
-        "affordablegolf.co.uk",
-        "aj-renewables.co.uk",
-        "allfloorsglasgow.co.uk",
-        "aramaslawexpat.com",
-        "autopsi.co.uk",
-        "beeksgroup.com",
-        "bespokehomefinance.co.uk",
-        "brightbustours.com",
-        "caffia.com",
-        "carmoney.co.uk",
-        "caterbox.co.uk",
-        "cbrsolar.co.uk",
-        "certum.co.uk",
-        "classicinteriors.co.uk",
-        "clyde-arc.com",
-        "discountpetsupplies.co.uk",
-        "diversediagnostics.co.uk",
-        "drbonaros.comgallery",
-        "drdarrenmckeown.com",
-        "estateagencymoray.co.uk",
-        "factoryweights.co.uk",
-        "federalmanagement.co.uk",
-        "firstvehicleleasing.co.uk",
-        "fishpatagonia.comthe-reviews",
-        "freshcar.co.uk",
-        "frontline-collections.com",
-        "g2ref.co.uk",
-        "gardenersdream.co.uk",
-        "gates-scotland.co.uk",
-        "gatesandautomationdirect.co.uk",
-        "gdotv.com",
-        "glenscotia.com",
-        "guitarguitar.co.uk",
-        "hanselstone.co.uk",
-        "hanselstone.com",
-        "harpermacleod.co.uk",
-        "hendry-installations.co.uk",
-        "holon.co.uk",
-        "homedetail.co.uk",
-        "homerewire.com",
-        "hrservicesscotland.co.uk",
-        "hyperiontiles.co.uk",
-        "jrsindustrial.co.uk",
-        "legionofvapers.com",
-        "linksforyou.com",
-        "loanza.co.uk",
-        "loanza.us",
-        "lochlomondwhiskies.com",
-        "logcabinkits.co.uk",
-        "logos4clothes.com",
-        "luxurylightingboutique.com",
-        "mannik.co.uk",
-        "google.com",
-        "google.com",
-        "google.com",
-        "google.com",
-        "google.com",
-        "google.com",
-        "google.com",
-        "google.com",
-        "google.com",
-        "google.com",
-        "google.com",
-        "google.com",
-        "google.com",
-        "google.com",
-        "google.com",
-        "google.com",
-        "google.com",
-        "google.com",
-        "google.com",
-        "mitchellmcdermott.com",
-        "myhotelbreak.com",
-        "myvoyagescotland.com",
-        "nadcellclinic.com",
-        "plastechgroup.com",
-        "plastererglasgow.co.uk",
-        "precision-um.co.uk",
-        "precision-um.ie",
-        "premiercarriage.co.uk",
-        "pwsglasgow.com",
-        "quotegoat.com",
-        "replacewindowslimited.co.uk",
-        "requiment.com",
-        "rtaesthetics.co.uk",
-        "rubberroofingdirect.co.uk",
-        "runitcool.co.uk",
-        "seoglasgow.com",
-        "soccerstarsacademy.co.uk",
-        "solutionsdriven.com",
-        "storageboxshop.co.uk",
-        "strivemortgages.co.uk",
-        "swankysets.com",
-        "taylorandmartin.co.uk",
-        "thedesignerrooms.com",
-        "theholytech.com",
-        "trackerintelligence.com",
-        "ukprivateinvestigators.com",
-        "vaperstore.co.uk",
-        "app.vypr.it",
-        "watermans.co.uk",
-        "wetwallpanels.co.uk",
-        "wholesaledomestic.com",
-        "safeprop.co.uk",
-        "drbonaros.com"
-      ];
-
-      const sampleDescriptions = [
-        "provides a curated selection of cannabis seeds, including feminized, autoflowering, and regular strains from trusted breeders.",
-        "freshcar.co.uk - UK-based mobile car valeting and detailing service offering convenient at-home cleaning solutions.",
-        "homedetail.co.uk - Online retailer offering a wide range of affordable home furniture and décor.",
-        "g2ref.co.uk - UK-based recruitment agency specializing in placing professionals across various industries.",
-        "google.com - Global technology company providing internet-related services and products, including search, advertising, and cloud computing.",
-        "google.com - Global technology company providing internet-related services and products, including search, advertising, and cloud computing.",
-        "google.com - Global technology company providing internet-related services and products, including search, advertising, and cloud computing.",
-        "ablegardeners.com - Professional gardening services offering landscaping, maintenance, and design solutions.",
-        "aboutliving.co.uk - Retailer specializing in contemporary furniture and home accessories.",
-        "affordablegolf.co.uk - Online store offering discounted golf equipment, apparel, and accessories.",
-        "aj-renewables.co.uk - Renewable energy solutions provider specializing in solar panel installations and maintenance.",
-        "allfloorsglasgow.co.uk - Flooring specialist offering a range of flooring solutions, including carpets, vinyl, and hardwood.",
-        "aramaslawexpat.com - Legal services firm catering to expatriates, offering assistance with immigration and international law.",
-        "autopsi.co.uk - Professional car detailing service providing paint correction, ceramic coatings, and valeting.",
-        "beeksgroup.com - Financial services company offering trading infrastructure and connectivity solutions.",
-        "bespokehomefinance.co.uk - Mortgage broker providing tailored home financing solutions.",
-        "brightbustours.com - Tour operator offering open-top bus tours in various cities.",
-        "caffia.com - Supplier of commercial coffee machines and beans for businesses.",
-        "carmoney.co.uk - Car finance broker helping customers find suitable car loan options.",
-        "caterbox.co.uk - Supplier of catering equipment and storage solutions for the foodservice industry.",
-        "cbrsolar.co.uk - Solar energy company specializing in the installation of photovoltaic systems.",
-        "certum.co.uk - IT services provider offering cybersecurity, cloud solutions, and managed IT support.",
-        "classicinteriors.co.uk - Interior design company offering bespoke kitchen and home design services.",
-        "clyde-arc.com - Engineering consultancy providing structural and civil engineering services.",
-        "discountpetsupplies.co.uk - Online retailer offering a wide range of pet products at discounted prices.",
-        "diversediagnostics.co.uk - Healthcare provider specializing in diagnostic services for neurodevelopmental conditions.",
-        "drbonaros.comgallery - Cosmetic surgery clinic offering hair transplant and aesthetic procedures.",
-        "drdarrenmckeown.com - Aesthetic medicine clinic providing non-surgical cosmetic treatments.",
-        "estateagencymoray.co.uk - Real estate agency offering property sales and lettings in the Moray area.",
-        "factoryweights.co.uk - Online retailer of fitness equipment, including weights and gym accessories.",
-        "federalmanagement.co.uk - Debt collection agency offering recovery services for businesses.",
-        "firstvehicleleasing.co.uk - Car leasing company providing personal and business vehicle leasing options.",
-        "fishpatagonia.comthe-reviews - Travel company specializing in fishing expeditions in Patagonia.",
-        "freshcar.co.uk - Mobile car valeting and detailing service operating across the UK, offering convenient at-home vehicle cleaning.",
-        "frontline-collections.com - Debt collection agency offering services for unpaid invoices and debts.",
-        "g2ref.co.uk - Recruitment and staffing agency focused on connecting employers with skilled professionals across multiple industries in the UK.",
-        "gardenersdream.co.uk - Online garden center offering plants, seeds, and gardening supplies.",
-        "gates-scotland.co.uk - Manufacturer and installer of gates and fencing solutions.",
-        "gatesandautomationdirect.co.uk - Supplier of automated gate systems and access control products.",
-        "gdotv.com - Media company producing television content and digital media.",
-        "glenscotia.com - Distillery producing single malt Scotch whisky in Campbeltown, Scotland.",
-        "guitarguitar.co.uk - Retailer specializing in guitars, musical instruments, and related accessories.",
-        "hanselstone.co.uk - Supplier of stone surfaces for kitchens and bathrooms.",
-        "hanselstone.com - Manufacturer of engineered stone products for various applications.",
-        "harpermacleod.co.uk - Full-service law firm offering legal advice across multiple sectors.",
-        "hendry-installations.co.uk - Installation services company specializing in kitchens and bathrooms.",
-        "holon.co.uk - Technology company developing innovative solutions for various industries.",
-        "homedetail.co.uk - Online furniture retailer offering stylish and affordable pieces for every room in the home, including sofas, beds, and storage solutions.",
-        "homerewire.com - Electrical services company specializing in home rewiring and electrical installations.",
-        "hrservicesscotland.co.uk - Human resources consultancy offering HR support and services.",
-        "hyperiontiles.co.uk - Retailer offering a wide range of tiles for residential and commercial projects.",
-        "jrsindustrial.co.uk - Supplier of industrial equipment and maintenance services.",
-        "legionofvapers.com - Online vape shop offering e-liquids, vape kits, and accessories.",
-        "linksforyou.com - Digital marketing agency specializing in link building and SEO services.",
-        "loanza.co.uk - Financial services platform connecting users with loan providers.",
-        "loanza.us - US-based financial services platform offering personal loan connections.",
-        "lochlomondwhiskies.com - Distillery producing a range of Scotch whiskies from the Loch Lomond region.",
-        "logcabinkits.co.uk - Supplier of log cabin kits and garden buildings.",
-        "logos4clothes.com - Custom clothing company offering personalized apparel and embroidery services.",
-        "luxurylightingboutique.com - Retailer specializing in high-end lighting fixtures and chandeliers.",
-        "mannik.co.uk - Fashion brand offering contemporary clothing and accessories.",
-        "google.com - Global technology company providing internet-related services and products, including search, advertising, and cloud computing.",
-        "google.com - Global technology company providing internet-related services and products, including search, advertising, and cloud computing.",
-        "google.com - Global technology company providing internet-related services and products, including search, advertising, and cloud computing.",
-        "google.com - Global technology company providing internet-related services and products, including search, advertising, and cloud computing.",
-        "google.com - Global technology company providing internet-related services and products, including search, advertising, and cloud computing.",
-        "google.com - Global technology company providing internet-related services and products, including search, advertising, and cloud computing.",
-        "google.com - Global technology company providing internet-related services and products, including search, advertising, and cloud computing.",
-        "google.com - Global technology company providing internet-related services and products, including search, advertising, and cloud computing.",
-        "google.com - Global technology company providing internet-related services and products, including search, advertising, and cloud computing.",
-        "google.com - Global technology company providing internet-related services and products, including search, advertising, and cloud computing.",
-        "google.com - Global technology company providing internet-related services and products, including search, advertising, and cloud computing.",
-        "google.com - Global technology company providing internet-related services and products, including search, advertising, and cloud computing.",
-        "google.com - Global technology company providing internet-related services and products, including search, advertising, and cloud computing.",
-        "google.com - Global technology company providing internet-related services and products, including search, advertising, and cloud computing.",
-        "google.com - Global technology company providing internet-related services and products, including search, advertising, and cloud computing.",
-        "google.com - Global technology company providing internet-related services and products, including search, advertising, and cloud computing.",
-        "google.com - Global technology company providing internet-related services and products, including search, advertising, and cloud computing.",
-        "google.com - Global technology company providing internet-related services and products, including search, advertising, and cloud computing.",
-        "google.com - Global technology company providing internet-related services and products, including search, advertising, and cloud computing.",
-        "mitchellmcdermott.com - Construction consultancy providing project management and cost consultancy services.",
-        "myhotelbreak.com - Hotel booking platform offering deals and packages for UK hotels.",
-        "myvoyagescotland.com - Travel guide providing information and tips for exploring Scotland.",
-        "nadcellclinic.com - Medical clinic specializing in NAD+ therapy and wellness treatments.",
-        "plastechgroup.com - Manufacturer of plastic products for various industries.",
-        "plastererglasgow.co.uk - Plastering services company offering interior and exterior plastering.",
-        "precision-um.co.uk - Underwriting agency providing insurance solutions.",
-        "precision-um.ie - Irish branch of the underwriting agency offering insurance products.",
-        "premiercarriage.co.uk - Wedding car hire service offering a range of classic and luxury vehicles.",
-        "pwsglasgow.com - Plumbing and heating services provider based in Glasgow.",
-        "quotegoat.com - Comparison website helping users find deals on insurance, utilities, and more.",
-        "replacewindowslimited.co.uk - Window replacement company offering installation services.",
-        "requiment.com - Technology company specializing in recruitment software solutions.",
-        "rtaesthetics.co.uk - Aesthetic clinic offering non-surgical cosmetic treatments.",
-        "rubberroofingdirect.co.uk - Supplier of EPDM rubber roofing materials and accessories.",
-        "runitcool.co.uk - IT services company offering cooling solutions for data centers.",
-        "seoglasgow.com - SEO agency providing search engine optimization services.",
-        "soccerstarsacademy.co.uk - Football coaching academy offering classes for children.",
-        "solutionsdriven.com - Recruitment agency specializing in talent acquisition and executive search.",
-        "storageboxshop.co.uk - Online retailer of storage boxes and organizational products.",
-        "strivemortgages.co.uk - Mortgage brokerage offering home financing solutions.",
-        "swankysets.com - Online store offering stylish home décor and furniture.",
-        "taylorandmartin.co.uk - Property auctioneers specializing in residential and commercial auctions across Scotland.",
-        "thedesignerrooms.com - Furniture retailer offering luxury and designer-style furniture at affordable prices.",
-        "theholytech.com - Tech blog covering in-depth reviews, comparisons, and guides on various electronics and gadgets.",
-        "trackerintelligence.com - Fleet management software provider offering GPS tracking and telematics solutions.",
-        "ukprivateinvestigators.com - Nationwide private investigation agency offering surveillance, tracing, and legal investigation services.",
-        "vaperstore.co.uk - Online vape store offering e-cigarettes, vape juice, and accessories.",
-        "app.vypr.it - Consumer insight platform that gathers real-time feedback from users for product and brand research.",
-        "watermans.co.uk - Law firm in Scotland offering legal services in personal injury, family law, and more.",
-        "wetwallpanels.co.uk - Supplier of waterproof wall panels for bathrooms and kitchens.",
-        "wholesaledomestic.com - Retailer specializing in bathroom products including suites, furniture, and accessories.",
-        "safeprop.co.uk - Property safety compliance service offering EICRs, PAT testing, gas safety checks, and more.",
-        "drbonaros.com - Specialist clinic in Scotland offering hair transplant and aesthetic procedures."
-      ];
-
-      const projects = [];
-      for (let i = 0; i < 119; i++) {
-        if ([4, 5, 6, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79].includes(i)) {
-          continue;
-        }
-
-        const nameIndex = i % sampleNames.length;
-        const suffix = i >= sampleNames.length ? ` ${Math.floor(i / sampleNames.length) + 1}` : '';
-        const name = sampleNames[nameIndex] + suffix;
-        const urlName = name.toLowerCase().replace(/\s/g, '');
-        const description = sampleDescriptions[nameIndex] + suffix;
-        projects.push({
-          name: name,
-          url: `https://www.${urlName}`,
-          description: description,
-          imgBase: `${i + 1}`
-        });
-      }
-
-      const projectsPerPage = 2;
-      let currentPage = 1;
-
-      // Helper function to check if an image exists
-      function imageExists(src) {
-        return new Promise((resolve) => {
-          const img = new Image();
-          img.onload = () => resolve(true);
-          img.onerror = () => resolve(false);
-          img.src = src;
-        });
-      }
-
-      async function generateProjectHTML(project) {
-        let imagesHTML = '';
-        for (let i = 0; i < 4; i++) {
-          const basePath = `https://jasenbarroma.github.io/img/${project.imgBase}.${i}`;
-          const lowerSrc = `${basePath}.jpg`;
-          const upperSrc = `${basePath}.JPG`;
-
-          let imgSrc = null;
-          if (await imageExists(lowerSrc)) {
-            imgSrc = lowerSrc;
-          } else if (await imageExists(upperSrc)) {
-            imgSrc = upperSrc;
-          }
-
-          if (imgSrc) {
-            imagesHTML += `
-        <img src="${imgSrc}" alt="${project.name} ${project.description} ${i}" class="project-img slide fade" loading="lazy" onclick="openModal(this)">
-      `;
-          }
-        }
-
-        return `
-    <li>
-      <strong>
-        <a href="${project.url}" target="_blank" class="zoom-link" style="text-decoration: none; color: inherit;">
-          ${project.name}
-        </a>
-      </strong>: ${project.description}<br>
-      <div class="slideshow-container" id="${project.imgBase}">
-        ${imagesHTML}
-      </div>
-      <br>
-    </li>
-  `;
-      }
-
-      async function displayProjects() {
-        const loader = document.getElementById("loader");
-        const projectList = document.getElementById("projectList");
-
-        loader.style.display = "flex"; // Show loader
-        projectList.innerHTML = "";
-
-        const start = (currentPage - 1) * projectsPerPage;
-        const end = Math.min(start + projectsPerPage, projects.length);
-        const currentProjects = projects.slice(start, end);
-
-        for (const project of currentProjects) {
-          const projectHTML = await generateProjectHTML(project);
-          projectList.innerHTML += projectHTML;
-        }
-
-        document.getElementById("pageIndicator").textContent = `Page ${currentPage}`;
-        initializeSlideshows(currentProjects);
-
-        loader.style.display = "none"; // Hide loader when done
-      }
-
-
-      function initializeSlideshows(projectSubset) {
-        for (const project of projectSubset) {
-          const container = document.getElementById(project.imgBase);
-          if (!container) continue;
-
-          let slideIndex = 0;
-          const slides = container.querySelectorAll(".slide");
-
-          function showSlide(index) {
-            slides.forEach(slide => slide.style.display = "none");
-            slides[index].style.display = "block";
-          }
-
-          function nextSlide() {
-            slideIndex = (slideIndex + 1) % slides.length;
-            showSlide(slideIndex);
-          }
-
-          if (slides.length > 0) {
-            showSlide(slideIndex);
-            container.slideInterval = setInterval(nextSlide, 2000);
-          }
-        }
-      }
-
-      function prevPage() {
-        if (currentPage > 1) {
-          currentPage--;
-          displayProjects();
-        }
-      }
-
-      function nextPage() {
-        const maxPage = Math.ceil(projects.length / projectsPerPage);
-        if (currentPage < maxPage) {
-          currentPage++;
-          displayProjects().then(() => {
-            // Scroll to the Website Projects section
-            const heading = document.querySelector('section h2:nth-of-type(2)');
-            if (heading && heading.parentElement) {
-              const section = heading.parentElement;
-              section.scrollIntoView({ behavior: 'smooth' });
-              section.focus({ preventScroll: true });
-            }
-
-          });
-        }
-      }
-
-      function openModal(img) {
-        const modal = document.getElementById("imgModal");
-        const modalImg = document.getElementById("modalImg");
-        modal.style.display = "flex";
-        modalImg.src = img.src;
-      }
-
-      function closeModal() {
-        document.getElementById("imgModal").style.display = "none";
-      }
-
-      window.onload = displayProjects;
-    </script>
+    <section class="section">
+      <h2>Contact</h2>
+      <p>📧 <a href="mailto:jasenbarroma@gmail.com">jasenbarroma@gmail.com</a></p>
+      <p>🌐 <a href="https://jasenbarroma.github.io" target="_blank">jasenbarroma.github.io</a></p>
+    </section>
   </div>
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
- <script>
-  const imageData = Array.from({ length: 16 }, (_, i) => ({
-  src: `p${i + 1}.jpg`
-}));
+  <footer>
+    © 2025 Jasen Robert Barroma | Built with passion & professionalism.
+  </footer>
 
-//const track = document.getElementById('track');
-
-// Helper to build a clickable slide
-function createSlide(data, className = '') {
-  const slide = document.createElement('div');
-  slide.className = 'carousel-slide ' + className;
-  const img = document.createElement('img');
-  img.src = `/img/${data.src}`;
-  img.alt = data.src;
-  img.style.cursor = 'pointer';
-
-  img.onclick = () => {
-    document.getElementById('modal-img').src = img.src;
-    document.getElementById('image-modal').style.display = 'block';
-    stopAutoplay();
-  };
-
-  slide.appendChild(img);
-  return slide;
-}
-
-// Clone first/last
-const track = document.getElementById('track');
-
-// 1. Append slides
-//track.appendChild(createSlide(imageData[0], 'clone')); // Clone of first (for seamless loop end)
-imageData.forEach(data => track.appendChild(createSlide(data))); // Real slides
-//track.insertBefore(createSlide(imageData[imageData.length - 1], 'clone'), track.firstChild); // Clone of last (for seamless loop start)
-
-// 2. THEN select all slides
-const slides = document.querySelectorAll('.carousel-slide');
-let index = 0;
-let allowShift = true;
-let autoplay = true;
-let autoplayInterval = null;
-
-function updateSlide(animate = true) {
-  track.style.transition = animate ? 'transform 0.4s ease-in-out' : 'none';
-  track.style.transform = `translateX(-${index * 100}%)`;
-  slides.forEach((s, i) => s.classList.toggle('active', i === index));
-}
-
-function shiftSlide(dir) {
-  if (!allowShift) return;
-  allowShift = false;
-
-  const newIndex = index + dir;
-
-  // Prevent going out of bounds
-  if (newIndex < 0 || newIndex >= slides.length) {
-    allowShift = true;
-    return;
-  }
-
-  index = newIndex;
-  updateSlide();
-  setTimeout(() => allowShift = true, 400);
-}
-
-function startAutoplay() {
-  autoplay = true;
-  autoplayInterval = setInterval(() => shiftSlide(1), 3000);
-}
-
-function stopAutoplay() {
-  autoplay = false;
-  clearInterval(autoplayInterval);
-}
-
-// Controls
-document.getElementById('next').onclick = () => shiftSlide(1);
-document.getElementById('prev').onclick = () => shiftSlide(-1);
-
-// Pause on hover
-const carousel = document.getElementById('carousel');
-carousel.addEventListener('mouseenter', stopAutoplay);
-carousel.addEventListener('mouseleave', () => {
-  if (!autoplay) return;
-  startAutoplay();
-});
-
-// Stop autoplay on click
-track.addEventListener('click', () => stopAutoplay());
-
-// Touch support
-let startX = 0, isDragging = false;
-track.addEventListener('touchstart', e => {
-  stopAutoplay();
-  startX = e.touches[0].clientX;
-  isDragging = true;
-});
-track.addEventListener('touchmove', e => {
-  if (!isDragging) return;
-  const deltaX = e.touches[0].clientX - startX;
-  if (deltaX > 50) {
-    shiftSlide(-1);
-    isDragging = false;
-  } else if (deltaX < -50) {
-    shiftSlide(1);
-    isDragging = false;
-  }
-});
-track.addEventListener('touchend', () => isDragging = false);
-
-// Initialize
-window.addEventListener('load', () => {
-  updateSlide(false);
-  startAutoplay();
-});
-
- /* 
- track.addEventListener('transitionend', () => {
-  // When landing on the cloned p1 (at end)
-  if (index === slides.length - 1) {
-    track.style.transition = 'none';
-    index = 1;  // go to real p1
-    track.style.transform = `translateX(-${index * 100}%)`;
-    requestAnimationFrame(() => {
-      track.style.transition = 'transform 0.4s ease-in-out';
+  <script>
+    // Loader Script
+    window.addEventListener("load", () => {
+      document.getElementById("loader").style.display = "none";
     });
-  }
-  // When landing on cloned p16 (at start)
-  else if (index === 0) {
-    track.style.transition = 'none';
-    index = imageData.length;  // go to real p16
-    track.style.transform = `translateX(-${index * 100}%)`;
-    requestAnimationFrame(() => {
-      track.style.transition = 'transform 0.4s ease-in-out';
-    });
-  }
-  allowShift = true;
-}); 
-*/
-
-
-  document.getElementById('modal-close').onclick = () => {
-  document.getElementById('image-modal').style.display = 'none';
-};
-window.onclick = (e) => {
-  if (e.target === document.getElementById('image-modal')) {
-    document.getElementById('image-modal').style.display = 'none';
-  }
-};
-
-
-
-  const thumbnailStrip = document.getElementById('thumbnail-strip');
-
-imageData.forEach(data => {
-  const thumb = document.createElement('img');
-  thumb.src = `/img/${data.src}`;
-  thumb.alt = data.src;
-
-  thumb.onclick = () => {
-    document.getElementById('modal-img').src = thumb.src;
-    document.getElementById('image-modal').style.display = 'block';
-    stopAutoplay();
-  };
-
-  thumbnailStrip.appendChild(thumb);
-});
-
-</script>
- 
+  </script>
 </body>
-
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
